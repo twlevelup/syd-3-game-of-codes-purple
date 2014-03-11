@@ -1,6 +1,8 @@
 ThoughtWorks LevelUp project starter kit
 =========================
 
+[![Build Status](https://travis-ci.org/twlevelup/syd-3-game-of-codes.png?branch=master)](https://travis-ci.org/twlevelup/syd-3-game-of-codes)
+
 ## Getting started
 ### OSX
 
