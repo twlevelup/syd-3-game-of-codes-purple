@@ -10,9 +10,12 @@ fi
 
 download='love-0.9.0-macosx-x64'
 
+if [[ -d /tmp/LevelUp.app ]]; then
+  rm -r /tmp/LevelUp.app
+fi
+
 curl -L "https://bitbucket.org/rude/love/downloads/$download.zip" > /tmp/$download.zip
 unzip -o /tmp/$download.zip -d /tmp
-rm -r /tmp/LevelUp.app
 mv /tmp/love.app /tmp/LevelUp.app
 cp dist/levelup.love /tmp/LevelUp.app/Contents/Resources/
 echo '<?xml version="1.0" encoding="UTF-8"?>
