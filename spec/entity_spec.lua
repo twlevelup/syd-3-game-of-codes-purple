@@ -45,7 +45,7 @@ describe("Entity", function()
         end)
 
         it("should set the top at its vertical position", function()
-            assert.is.equal(entity:bounds().top, 10)
+            assert.is.equal(entity:bounds().top, 1)
         end)
 
         it("should set the left at its horizontal position", function()
