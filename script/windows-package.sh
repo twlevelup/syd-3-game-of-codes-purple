@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
 
 # builds a windows executable and packages it with the runtime dependencies
 # expects dist/levelup.love to exist

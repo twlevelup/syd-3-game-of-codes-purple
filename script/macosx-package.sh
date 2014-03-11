@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
 
 # builds an mac os x app
 # expects dist/levelup.love to exist
