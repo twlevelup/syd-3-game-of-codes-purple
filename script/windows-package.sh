@@ -10,7 +10,7 @@ fi
 
 download='love-0.9.0-win64'
 
-if [[ ! -d /tmp/$download ]]; then
+if [[ ! -d /tmp/$download.zip ]]; then
   curl -L "https://bitbucket.org/rude/love/downloads/$download.zip" > /tmp/$download.zip
   unzip -o /tmp/$download.zip -d /tmp
 fi

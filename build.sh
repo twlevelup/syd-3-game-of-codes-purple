@@ -20,3 +20,6 @@ cd -
 
 echo Windows 64-bit distribution
 ./script/windows-package.sh
+
+echo Mac OS X distribution
+./script/macosx-package.sh
