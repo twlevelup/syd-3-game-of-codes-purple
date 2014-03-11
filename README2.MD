@@ -5,12 +5,9 @@ Jump to instructions for:
 
 1. [Git](#git)
 2. [Lua](#lua)
-3. [Busted](#busted)
+3. [LOVE](#love)
+4. [Busted](#busted)
 5. [Sublime](#sublime)
-6. [Installing Homebrew for Mac OS X](#installing-homebrew-for-mac-os-x)
-7. [Generating a public/private key for Mac OS X](#generating-a-publicprivate-key-for-mac-os-x)
-8. [Uploading your public key to GitHub](#uploading-your-public-key-to-github)
-
 
 
 
@@ -104,6 +101,17 @@ For the full list of instructions, please visit the LuaRocks [windows installati
 2. Install LuaRocks by running `brew install luarocks`.
 3. Install busted with `luarocks install busted`.
 
+
+
+<a name="love_osx"/>
+# LÖVE
+
+LÖVE is an *awesome* framework you can use to make 2D games in Lua. It's free, open-source, and works on Windows, Mac OS X and Linux.
+
+1. Install [LÖVE](http://love2d.org/) to your applications folder.
+2. Add an alias in your ~/.bash_profile (or your shell of choice's config) to LÖVE:
+
+        alias love="/Applications/love.app/Contents/MacOS/love"
 
 
 
