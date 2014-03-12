@@ -25,7 +25,7 @@ before_script:
 
 script:
   - busted spec
-  - ./build.sh
+  - "./build.sh $TRAVIS_BUILD_NUMBER"
 
 after_success:
   - "cd dist && travis-artifacts upload --path windows-levelup.zip --path LevelUp.app.tar.gz --path levelup.love --target-path build-$TRAVIS_BUILD_NUMBER --clone-path latest"

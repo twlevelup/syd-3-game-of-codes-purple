@@ -14,6 +14,11 @@ echo Building package
 mkdir bin
 mkdir dist
 cp *.lua bin
+
+if [[ "$1" != "" ]]; then
+	echo "version = '$1'" > bin/version.lua
+fi
+
 cp -r vendor bin/vendor
 cp -r assets bin/assets
 cd bin/
