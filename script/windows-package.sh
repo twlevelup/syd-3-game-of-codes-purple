@@ -17,7 +17,7 @@ unzip -q -o /tmp/$download.zip -d /tmp
 
 # combine the exe with the lua files
 echo Building levelup.exe
-cat dist/levelup.love /tmp/$download/love.exe > /tmp/$download/levelup.exe
+cat /tmp/$download/love.exe dist/levelup.love > /tmp/$download/levelup.exe
 
 # zip it and move it to dist
 pushd /tmp/$download > /dev/null && zip -q levelup.zip * -x love.exe && popd > /dev/null
