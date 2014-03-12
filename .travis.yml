@@ -1,12 +1,14 @@
 language: erlang
 
 env:
+  global:
+    - "ARTIFACTS_AWS_REGION=ap-southeast-2"
+    - "ARTIFACTS_S3_BUCKET=levelup-sydney"
+    - secure: "fHTqIyEYrwPz5OFiy0bmdJZQynQQBY7ATvYWM2dPodd5mXZfjEAdUVc4/ElkEPouhcp+M1WhJ0bpy07wWg4TG3bFsywRzYBWGbHvyFU3X2pDd8SWFESeP/LON60Nt+rJ4Nz1HCqJmqNExM6YWReAgzPluKexayjb+PW6pRdH5z8="
+    - secure: "XpcLbN+JJ/PCOfaw3gEK0fqFsy38ZdJYos8wgadd3IFj2keXAdPx5VIrj8NmFTeh8A+iAw/rj/cz3i888lbzBTPXdl574ymRk9klrRQVTscwNmU4haZaL6uasPIobWA2ntm4ZLwmqsnmSm82WRnNGJ4pjOW07DxDxb2cqEdyOHk="
   - LUA=""
   - LUA="luajit"
-  - "ARTIFACTS_AWS_REGION=ap-southeast-2"
-  - "ARTIFACTS_S3_BUCKET=levelup-sydney"
-  - secure: "fHTqIyEYrwPz5OFiy0bmdJZQynQQBY7ATvYWM2dPodd5mXZfjEAdUVc4/ElkEPouhcp+M1WhJ0bpy07wWg4TG3bFsywRzYBWGbHvyFU3X2pDd8SWFESeP/LON60Nt+rJ4Nz1HCqJmqNExM6YWReAgzPluKexayjb+PW6pRdH5z8="
-  - secure: "XpcLbN+JJ/PCOfaw3gEK0fqFsy38ZdJYos8wgadd3IFj2keXAdPx5VIrj8NmFTeh8A+iAw/rj/cz3i888lbzBTPXdl574ymRk9klrRQVTscwNmU4haZaL6uasPIobWA2ntm4ZLwmqsnmSm82WRnNGJ4pjOW07DxDxb2cqEdyOHk="
+
 
 branches:
   only:
