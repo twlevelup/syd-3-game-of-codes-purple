@@ -22,6 +22,7 @@ install:
   - sudo luarocks install busted
 
 before_script:
+  - "gem install --version 0.8.9 faraday"
   - "gem install travis-artifacts"
 
 script:
