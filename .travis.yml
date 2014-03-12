@@ -28,4 +28,4 @@ script:
   - ./build.sh
 
 after_success:
-  - "travis-artifacts upload --path dist/*"
+  - "travis-artifacts upload --path dist/windows-levelup.zip --path dist/LevelUp.app.tar.gz --path dist/levelup.love"
