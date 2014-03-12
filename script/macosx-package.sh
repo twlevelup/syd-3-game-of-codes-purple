@@ -15,10 +15,12 @@ if [[ -d /tmp/LevelUp.app ]]; then
 fi
 
 # get the latest Love and unzip it
-curl -L "https://bitbucket.org/rude/love/downloads/$download.zip" > /tmp/$download.zip
-unzip -o /tmp/$download.zip -d /tmp
+echo Downloading $download
+curl -s -L "https://bitbucket.org/rude/love/downloads/$download.zip" > /tmp/$download.zip
+unzip -q -o /tmp/$download.zip -d /tmp
 
 # create a LevelUp.app by renaming love.app, copying the levelup.love lua, and replacing the Info.plist
+echo Building LevelUp.app
 mv /tmp/love.app /tmp/LevelUp.app
 cp dist/levelup.love /tmp/LevelUp.app/Contents/Resources/
 echo '<?xml version="1.0" encoding="UTF-8"?>
@@ -98,5 +100,7 @@ echo '<?xml version="1.0" encoding="UTF-8"?>
 </plist>' > /tmp/LevelUp.app/Contents/Info.plist
 
 # tar it up and move to dist
-pushd /tmp && tar -czvf LevelUp.app.tar.gz LevelUp.app && popd
+pushd /tmp > /dev/null && tar -czf LevelUp.app.tar.gz LevelUp.app && popd > /dev/null
 mv /tmp/LevelUp.app.tar.gz dist/
+
+echo Complete
