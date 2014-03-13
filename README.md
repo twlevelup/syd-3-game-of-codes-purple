@@ -63,7 +63,7 @@ For the full list of instructions, please visit the Lua for windows [installatio
 1. Download and install the latest version of [Lua for windows](https://code.google.com/p/luaforwindows/downloads/list).
 2. Configuration options:
   * Full Installation
-  * De-select LuaRocks
+  * **_IMPORTANT!_ De-select LuaRocks Module Installer**
 
 <a name="lua_osx"/>
 #### Mac OS X
@@ -86,8 +86,16 @@ Check out the Busted [usage examples](http://olivinelabs.com/busted/).
 
 For the full list of instructions, please visit the LuaRocks [windows installation page](http://luarocks.org/en/Installation_instructions_for_Windows).
 
-1. Download and install [LuaRocks for Windows](http://luarocks.org/en/Download).
-2. Install busted with `luarocks install busted`.
+1. Download [LuaRocks for Windows](http://luarocks.org/en/Download).
+2. Extract the downloaded Zip file.
+3. Open a command prompt with Administrator rights.
+4. Navigate to the extracted directory and install with the following command:
+  * `install`
+5. Add/update your environment variables with the following locations (yours may differ if on a 64-bit machine):
+  * PATH: `;C:\Program Files\LuaRocks\2.1;C:\Program Files\LuaRocks\systree\bin;`
+  * LUA_PATH: `;C:\Program Files\LuaRocks\2.1\lua\?.lua;C:\Program Files\LuaRocks\2.1\lua\?\init.lua;C:\Program Files\LuaRocks\systree\share\lua\5.1\?.lua;C:\ProgramFiles\LuaRocks\systree\share\lua\5.1\?\init.lua;`
+  * LUA_CPATH: `;C:\Program Files\LuaRocks\systree\lib\lua\5.1\?.dll`
+6. Install busted with `luarocks install busted`.
 
 <a name="busted_osx"/>
 #### Mac OS X
