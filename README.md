@@ -11,8 +11,7 @@ Jump to instructions for:
 2. [Lua](#lua)
 3. [LÖVE](#love)
 4. [Busted](#busted)
-5. [Sublime](#sublime)
-6. [Making it go](#go)
+5. [Making it go](#go)
 
 <a name="git"/>
 ### Git
@@ -52,18 +51,11 @@ The *GitHub, Inc* folder under *All Programs* within your *Start Menu* will cont
 ### Lua
 Installation guides for [windows](#lua_windows) | [mac osx](#lua_osx).
 
-Lua is a lightweight, cross-platform programming language that is utilised by the Corona Labs SDK. It is the programming language that you will be using to write your mobile games in.
-
-The [Lua Reference Manual](http://www.lua.org/manual/5.1/index.html#contents) is a good place for all your API questions.
+Lua is a lightweight, cross-platform programming language. The [Lua Reference Manual](http://www.lua.org/manual/5.1/index.html#contents) is a good place for all your API questions.
 
 <a name="lua_windows"/>
 #### Windows
-For the full list of instructions, please visit the Lua for windows [installation page](https://code.google.com/p/luaforwindows/). Otherwise use our quick guide:
-
-1. Download and install the latest version of [Lua for windows](https://code.google.com/p/luaforwindows/downloads/list).
-2. Configuration options:
-  * Full Installation
-  * **_IMPORTANT!_ De-select LuaRocks Module Installer**
+Please follow the list of instructions outlined in [this blog](http://www.thijsschreijer.nl/blog/?p=863), for installing Lua and LuaRocks.
 
 <a name="lua_osx"/>
 #### Mac OS X
@@ -84,18 +76,7 @@ Check out the Busted [usage examples](http://olivinelabs.com/busted/).
 <a name="busted_windows"/>
 #### Windows
 
-For the full list of instructions, please visit the LuaRocks [windows installation page](http://luarocks.org/en/Installation_instructions_for_Windows).
-
-1. Download [LuaRocks for Windows](http://luarocks.org/en/Download).
-2. Extract the downloaded Zip file.
-3. Open a command prompt with Administrator rights.
-4. Navigate to the extracted directory and install with the following command:
-  * `install`
-5. Add/update your environment variables with the following locations (yours may differ if on a 64-bit machine):
-  * PATH: `;C:\Program Files\LuaRocks\2.1;C:\Program Files\LuaRocks\systree\bin;`
-  * LUA_PATH: `;C:\Program Files\LuaRocks\2.1\lua\?.lua;C:\Program Files\LuaRocks\2.1\lua\?\init.lua;C:\Program Files\LuaRocks\systree\share\lua\5.1\?.lua;C:\ProgramFiles\LuaRocks\systree\share\lua\5.1\?\init.lua;`
-  * LUA_CPATH: `;C:\Program Files\LuaRocks\systree\lib\lua\5.1\?.dll`
-6. Install busted with `luarocks install busted`.
+1. Open a command terminal, and run `luarocks install busted`.
 
 <a name="busted_osx"/>
 #### Mac OS X
@@ -103,8 +84,6 @@ For the full list of instructions, please visit the LuaRocks [windows installati
 1. You are required to have [Homebrew](#homebrew_osx) installed to run the following commands.
 2. Install LuaRocks by running `brew install luarocks`.
 3. Install busted with `luarocks install busted`.
-
-
 
 <a name="love"/>
 ### LÖVE
