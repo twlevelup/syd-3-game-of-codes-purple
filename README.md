@@ -14,10 +14,8 @@ Jump to instructions for:
 5. [Sublime](#sublime)
 6. [Making it go](#go)
 
-
-
-
-# Git
+<a name="git"/>
+### Git
 Installation guides for [windows](#git_windows) | [mac osx](#git_osx).
 
 Git is a Version Control System (VCS) used to easily track changes made by developers working on their source code. It will aid developers in maintaining a working code base whilst they work simultaneously across it.
@@ -50,12 +48,8 @@ The *GitHub, Inc* folder under *All Programs* within your *Start Menu* will cont
 6. [Create](#ssh_keygen) a public/private key.
 7. [Upload](#upload_key_github) your public key to your Github account.
 
-
-
-
-
-
-# Lua
+<a name="lua"/>
+### Lua
 Installation guides for [windows](#lua_windows) | [mac osx](#lua_osx).
 
 Lua is a lightweight, cross-platform programming language that is utilised by the Corona Labs SDK. It is the programming language that you will be using to write your mobile games in.
@@ -77,12 +71,8 @@ For the full list of instructions, please visit the Lua for windows [installatio
 1. You are required to have [Homebrew](#homebrew_osx) installed to run the following commands.
 2. Install Lua by running `brew install lua`.
 
-
-
-
-
-
-# Busted
+<a name="busted"/>
+### Busted
 Installation guides for [windows](#busted_windows) | [mac osx](#busted_osx).
 
 Busted is a unit testing framework for the Lua programming language. It is what we will be using to implement **T**est **D**riven **D**evelopment (TDD).
@@ -109,20 +99,24 @@ For the full list of instructions, please visit the LuaRocks [windows installati
 
 
 <a name="love_osx"/>
-# LÖVE
+### LÖVE
+Installation guides for [windows](#love_windows) | [mac osx](#love_osx).
 
 LÖVE is an *awesome* framework you can use to make 2D games in Lua. It's free, open-source, and works on Windows, Mac OS X and Linux.
 
+<a name="love_windows"/>
+#### Windows
+
+
+<a name="love_osx"/>
+#### Mac OS X
 1. Install [LÖVE](http://love2d.org/) to your applications folder.
 2. Add an alias in your ~/.bash_profile (or your shell of choice's config) to LÖVE:
 
         alias love="/Applications/love.app/Contents/MacOS/love"
 
-
-
-
 <a name="homebrew_osx"/>
-# Installing Homebrew for Mac OS X
+### Installing Homebrew for Mac OS X
 
 1. The installation of [Homebrew](http://brew.sh/) requires ruby to be installed on your Mac. You can check that ruby is installed by running `which ruby` from a terminal. If a path is present then carry on with step 3, otherwise continue with step 2.
 2. To install Ruby, simply install it with [RVM](http://rvm.io/). The following command can be run:
@@ -132,8 +126,8 @@ LÖVE is an *awesome* framework you can use to make 2D games in Lua. It's free, 
   * `ruby -e "$(curl -fsSL https://raw.github.com/Homebrew/homebrew/go/install)"`
 
 
-
-# Making it go:
+<a name="go"/>
+### Making it go:
 
 Now after cd'ing into the project directory, you should be able to run your tests. Running
 
