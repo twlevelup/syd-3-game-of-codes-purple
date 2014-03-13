@@ -9,7 +9,7 @@ Jump to instructions for:
 
 1. [Git](#git)
 2. [Lua](#lua)
-3. [LOVE](#love)
+3. [LÖVE](#love)
 4. [Busted](#busted)
 5. [Sublime](#sublime)
 6. [Making it go](#go)
@@ -104,9 +104,12 @@ Installation guides for [windows](#love_windows) | [mac osx](#love_osx).
 
 LÖVE is an *awesome* framework you can use to make 2D games in Lua. It's free, open-source, and works on Windows, Mac OS X and Linux.
 
+Once installed, checkout out how to [get started](http://www.love2d.org/wiki/Getting_Started) with LÖVE.
+
 <a name="love_windows"/>
 #### Windows
-
+1. Install [LÖVE](http://love2d.org/).
+2. Add `C:\Program Files\LOVE\` to your PATH environment variable.
 
 <a name="love_osx"/>
 #### Mac OS X
