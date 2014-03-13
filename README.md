@@ -98,7 +98,7 @@ For the full list of instructions, please visit the LuaRocks [windows installati
 
 
 
-<a name="love_osx"/>
+<a name="love"/>
 ### LÖVE
 Installation guides for [windows](#love_windows) | [mac osx](#love_osx).
 
