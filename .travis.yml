@@ -28,4 +28,4 @@ script:
   - "./build.sh $TRAVIS_BUILD_NUMBER"
 
 after_success:
-  - "cd dist && travis-artifacts upload --path windows-levelup.zip --path LevelUp.app.tar.gz --path levelup.love --target-path ci/build-$TRAVIS_BUILD_NUMBER --clone-path ci/latest"
+  - "cd dist && travis-artifacts upload --path windows-levelup.zip --path LevelUp.app.tar.gz --path levelup.love --target-path ci/$TRAVIS_REPO_SLUG/build-$TRAVIS_BUILD_NUMBER --clone-path ci/$TRAVIS_REPO_SLUG/latest"
