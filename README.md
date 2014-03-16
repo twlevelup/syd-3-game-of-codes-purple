@@ -159,3 +159,19 @@ Install the following applications:
         sudo add-apt-repository ppa:bartbes/love-stable -y
         sudo apt-get update
         sudo apt-get install love -y
+
+<a name="windows"/>
+## Windows
+
+Setting up the required development environment in windows is not for the feint hearted. Therefore, we will provide you with a Vagrant Box and File (configured for Ubuntu) via USB when attending.
+
+For this setup, install the following applications:
+
+1. [VirtualBox](#virtualbox)
+2. [Vagrant](#vagrant)
+
+<a name="virtualbox"/>
+### Installing VirtualBox
+
+<a name="vagrant"/>
+### Installing Vagrant
