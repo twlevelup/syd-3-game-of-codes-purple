@@ -20,9 +20,9 @@ What's next?
 
 
 <a name="mac"/>
-### Mac
+## Mac
 
-Install:
+Install the following applications:
 
 1. [Ruby](#ruby_mac)
 2. [Homebrew](#homebrew_mac)
@@ -33,7 +33,7 @@ Install:
 7. [Love](#love_mac)
 
 <a name="ruby_mac"/>
-#### Installing Ruby via RVM
+### Installing Ruby via RVM
 The installation of [Homebrew](http://brew.sh/) requires ruby to be installed on your Mac. You can check that ruby is installed by:
 
 1. Open a terminal and type:
@@ -49,14 +49,14 @@ The installation of [Homebrew](http://brew.sh/) requires ruby to be installed on
     *Note: This will install RVM _AND_ the latest version of Ruby*.
 
 <a name="homebrew_mac"/>
-#### Installing Homebrew
+### Installing Homebrew
 
 1. Open a terminal and type:
 
         ruby -e "$(curl -fsSL https://raw.github.com/Homebrew/homebrew/go/install)"
 
 <a name="git_mac"/>
-#### Installing Git
+### Installing Git
 
 1. Open a terminal and type:
 
@@ -73,30 +73,89 @@ The installation of [Homebrew](http://brew.sh/) requires ruby to be installed on
 4. Add a public SSH key to your [GitHub](https://github.com/) account.
 
 <a name="lua_mac"/>
-#### Installing Lua
+### Installing Lua
 
 1. Open a terminal and type:
 
         brew install lua
 
 <a name="luarocks_mac"/>
-#### Installing LuaRocks
+### Installing LuaRocks
 
 1. Open a terminal and type:
 
         brew install luarocks
 
 <a name="busted_mac"/>
-#### Installing Busted
+### Installing Busted
 
 1. Open a terminal and type:
 
         luarocks install busted
 
 <a name="love_mac"/>
-#### Installing Love
+### Installing Love
 
 1. Install [LÖVE](http://love2d.org/) to your applications folder.
 2. Open a terminal and add an alias in your ~/.bash_profile (or your shell of choice's config) to LÖVE:
 
         alias love="/Applications/love.app/Contents/MacOS/love"
+
+
+<a name="ubuntu"/>
+## Ubuntu
+
+Install the following applications:
+
+1. [Git](#git_ubuntu)
+2. [Lua](#lua_ubuntu)
+3. [LuaRocks](#luarocks_ubuntu)
+4. [Busted](#busted_ubuntu)
+5. [Love](#love_ubuntu)
+
+<a name="git_ubuntu"/>
+### Installing Git
+
+1. Open a terminal and type:
+
+        sudo apt-get install git -y
+
+2. Configure your username:
+
+        git config --global user.name "Your Name Here"
+
+3. Configure your email:
+
+        git config --global user.email "your_email@example.com"
+
+4. Add a public SSH key to your [GitHub](https://github.com/) account.
+
+<a name="lua_ubuntu"/>
+### Installing Lua
+
+1. Open a terminal and type:
+
+        sudo apt-get install lua -y
+
+<a name="luarocks_ubuntu"/>
+### Installing LuaRocks
+
+1. Open a terminal and type:
+
+        sudo apt-get install luarocks -y
+
+<a name="busted_ubuntu"/>
+### Installing Busted
+
+1. Open a terminal and type:
+
+        luarocks install busted
+
+<a name="love_ubuntu"/>
+### Installing Love
+
+1. Open a terminal and type:
+
+        sudo add-apt-repository ppa:bartbes/love-stable -y
+        sudo apt-get update
+        sudo apt-get install love -y
