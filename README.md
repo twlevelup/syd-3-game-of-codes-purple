@@ -32,7 +32,7 @@ Install:
 6. [Busted](#busted_mac)
 
 <a name="ruby_mac"/>
-### Installing Ruby via RVM
+#### Installing Ruby via RVM
 The installation of [Homebrew](http://brew.sh/) requires ruby to be installed on your Mac. You can check that ruby is installed by:
 
 1. Open a terminal.
@@ -41,7 +41,7 @@ The installation of [Homebrew](http://brew.sh/) requires ruby to be installed on
   * `\curl -sSL https://get.rvm.io | bash -s stable --ruby` *(This will install RVM _AND_ the latest version of Ruby)*.
 
 <a name="homebrew_mac"/>
-### Installing Homebrew
+#### Installing Homebrew
 
 1. Open a terminal.
 2. Install [Homebrew](http://brew.sh/) by running:
