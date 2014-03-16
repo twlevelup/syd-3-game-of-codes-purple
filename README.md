@@ -30,6 +30,7 @@ Install:
 4. [Lua](#lua_mac)
 5. [LuaRocks](#luarocks_mac)
 6. [Busted](#busted_mac)
+7. [Love](#love_mac)
 
 <a name="ruby_mac"/>
 #### Installing Ruby via RVM
