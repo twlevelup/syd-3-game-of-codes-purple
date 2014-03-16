@@ -173,5 +173,9 @@ For this setup, install the following applications:
 <a name="virtualbox"/>
 ### Installing VirtualBox
 
+1. Download and install the VirtualBox [installer](http://download.virtualbox.org/virtualbox/4.3.8/VirtualBox-4.3.8-92456-Win.exe).
+
 <a name="vagrant"/>
 ### Installing Vagrant
+
+1. Download and install the Vagrant [installer](https://dl.bintray.com/mitchellh/vagrant/vagrant_1.5.1.msi).
