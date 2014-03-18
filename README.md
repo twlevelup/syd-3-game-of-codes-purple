@@ -163,12 +163,13 @@ Install the following applications:
 <a name="windows"/>
 ## Windows
 
-Setting up the required development environment in windows is not for the feint hearted. Therefore, we will provide you with a Vagrant Box and File (configured for Ubuntu) via USB when attending.
+Setting up the required development environment in windows is not for the feint hearted. Therefore, we encourage you to use a Vagrant Box (virtual machine) that we have already setup. Instructions below.
 
 For this setup, install the following applications:
 
 1. [VirtualBox](#virtualbox)
 2. [Vagrant](#vagrant)
+3. [Setup](#vagrant_setup)
 
 <a name="virtualbox"/>
 ### Installing VirtualBox
@@ -179,3 +180,53 @@ For this setup, install the following applications:
 ### Installing Vagrant
 
 1. Download and install the Vagrant [installer](https://dl.bintray.com/mitchellh/vagrant/vagrant_1.5.1.msi).
+
+<a name="vagrant_setup"/>
+### Setup
+
+We will provide you with a Vagrant Box and File (configured for Ubuntu) via USB when attending as the Vagrant Box is ~600mb. However, for those of you who would like to get started early, here are some instructions:
+
+1. Download the [Vagrantfile](https://dl.dropboxusercontent.com/u/10202299/thoughtworks/levelup3/vagrant/Vagrantfile) **(Right-click > Save as)** and remove the `.txt` extension that Dropbox adds.
+2. Download the Vagrant [Box](https://dl.dropboxusercontent.com/u/10202299/thoughtworks/levelup3/vagrant/levelup_3-goc.box) **(Right-click > Save as)** .
+3. Open a command prompt and enter:
+
+        vagrant box add levelup_3-goc <path-to-downloaded-vagrant-box>.
+
+4. Create a directory to store your Vagrant machine, an example:
+
+        mkdir C:\vagrant
+        
+5. Enter the newly created directory, using the above example:
+
+        cd C:\vagrant
+
+6. Initialise vagrant by typing:
+
+        vagrant init
+
+7. Overwrite the newly created `Vagrantfile` with the downloaded `Vagrantfile`, using the above example:
+
+        copy C:\Users\ExampleUser\Downloads\VagrantFile C:\vagrant\
+
+8. You can now launch the vagrant machine with:
+
+        vagrant up
+
+9. You can shutdown the vagrant machine with:
+
+        vagrant halt
+
+10. The default vagrant username / password is:
+
+        username: vagrant
+        password: vagrant
+
+#### 3D Hardware Acceleration
+
+Whilst the vagrant machine is shutdown, you should enable this feature. To do so, simply follow these steps:
+
+1. Open VirtualBox.
+2. Right click on your Vagrant machine and choose `settings`.
+3. Select `Display`.
+4. Select only `Enable 3D Acceleration` under `Extended Features`.
+5. Press `OK`.
