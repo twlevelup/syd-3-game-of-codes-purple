@@ -2,6 +2,8 @@
 
 [![Build Status](https://travis-ci.org/twlevelup/syd-3-game-of-codes.png?branch=master)](https://travis-ci.org/twlevelup/syd-3-game-of-codes)
 
+### QA builds: https://s3-ap-southeast-2.amazonaws.com/levelup-sydney
+
 
 ## Developer Environment Setup
 
