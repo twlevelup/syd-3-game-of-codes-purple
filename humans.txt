@@ -19,3 +19,8 @@
   Carl Suster
   Site: https://github.com/arcresu
   Location: Sydney
+
+  Mina Asad
+  Site: https://github.com/minaasad
+  Location: Sydney
+  
