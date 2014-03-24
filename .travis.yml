@@ -4,8 +4,8 @@ env:
   global:
     - "ARTIFACTS_AWS_REGION=ap-southeast-2"
     - "ARTIFACTS_S3_BUCKET=levelup-sydney"
-    - secure: "fHTqIyEYrwPz5OFiy0bmdJZQynQQBY7ATvYWM2dPodd5mXZfjEAdUVc4/ElkEPouhcp+M1WhJ0bpy07wWg4TG3bFsywRzYBWGbHvyFU3X2pDd8SWFESeP/LON60Nt+rJ4Nz1HCqJmqNExM6YWReAgzPluKexayjb+PW6pRdH5z8="
-    - secure: "XpcLbN+JJ/PCOfaw3gEK0fqFsy38ZdJYos8wgadd3IFj2keXAdPx5VIrj8NmFTeh8A+iAw/rj/cz3i888lbzBTPXdl574ymRk9klrRQVTscwNmU4haZaL6uasPIobWA2ntm4ZLwmqsnmSm82WRnNGJ4pjOW07DxDxb2cqEdyOHk="
+    - secure: "Xjg751zm0O0BU6TQBjxBqn/EIc2weI7FL/fT2CYpGlfOXk83SoDFuHOjWW7Q55rTwaqwR+eckWaaMJgcFbe+udrq8TShHTX/Giqdp4Z1gWXPcuV3sFC173+tpqVD9ZZBtiItiIS2t4a07fA91TxR/rxkRfJ23mFxPX5PN7lbGxk="
+    - secure: "PkBtRPde+J02UuK9Y88kvkXs7HQWBBOR0JhwHoO2wtZ4gWgkrnuy56+whxyqcdBiAeic9kc6mgS4MfX2AEYBO2qiRIizyyhPJHUVPf/u66dEKqyDvul0yfQhvmr9Yw27aeZ3E6OOgd0tjLFqQtjwawYGZLb0sdrMsImp1XqdegA="
   matrix:
     - LUA="luajit"
 
