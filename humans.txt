@@ -23,4 +23,7 @@
   Mina Asad
   Site: https://github.com/minaasad
   Location: Sydney
-  
+
+  Kayla Panozzo
+  Site: https://github.com/kpanozzo
+  Location: Sydney  
