@@ -2,7 +2,12 @@
 
 [![Build Status](https://travis-ci.org/twlevelup/syd-3-game-of-codes-purple.svg)](https://travis-ci.org/twlevelup/syd-3-game-of-codes-purple)
 
-### QA builds: https://s3-ap-southeast-2.amazonaws.com/levelup-sydney
+### QA builds: 
+
+
+##### OSX: http://levelup-sydney.s3-ap-southeast-2.amazonaws.com/ci/twlevelup/syd-3-game-of-codes-purple/latest/LevelUp.app.tar.gz
+##### Linux: http://levelup-sydney.s3-ap-southeast-2.amazonaws.com/ci/twlevelup/syd-3-game-of-codes-purple/latest/levelup.love
+##### Windows: http://levelup-sydney.s3-ap-southeast-2.amazonaws.com/ci/twlevelup/syd-3-game-of-codes-purple/latest/windows-levelup.zip
 
 
 ## Developer Environment Setup
