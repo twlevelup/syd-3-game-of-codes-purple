@@ -12,7 +12,11 @@ function Entity:new(game)
 end
 
 function Entity:draw()
-    self.graphics.animation:draw(self.graphics.sprites, self.x, self.y)
+    if self.graphics.animation then
+      self.graphics.animation:draw(self.graphics.sprites, self.x, self.y)
+    else
+      self.game.graphics.rectangle("fill", self.x, self.y, self.size.x, self.size.y)
+    end
     if DEBUG_MODE then
         self.game.graphics.rectangle("line", self.x, self.y, self.size.x, self.size.y)
     end

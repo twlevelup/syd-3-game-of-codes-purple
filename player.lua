@@ -27,7 +27,7 @@ function Player:new(game, config)
     }
 
     newPlayer.graphics = config.graphics or {
-        source = "assets/images/nyancat-sprites.png",
+        source = "assets/images/box.png",
         facing = "right"
     }
 
@@ -47,6 +47,7 @@ function Player:new(game, config)
         newPlayer.sound.moving.sample:setLooping(true)
     end
 
+    --[[
     if game.graphics ~= nil and game.animation ~= nil then
         newPlayer.graphics.sprites = game.graphics.newImage(newPlayer.graphics.source)
         newPlayer.graphics.grid = game.animation.newGrid(
@@ -55,10 +56,10 @@ function Player:new(game, config)
             newPlayer.graphics.sprites:getHeight()
         )
         newPlayer.graphics.animation = game.animation.newAnimation(
-            newPlayer.graphics.grid("1-6", 1),
+            newPlayer.graphics.grid("1-1", 1),
             0.05
         )
-    end
+    end]]--
 
     return setmetatable(newPlayer, self)
 end
@@ -75,7 +76,7 @@ function Player:update(dt)
     if self.game.input.pressed(self.keys.left) then
         dx = dx - self.speed
 
-        if self.graphics.facing ~= "left" then
+        if self.graphics.animation and self.graphics.facing ~= "left" then
             self.graphics.animation:flipH()
             self.graphics.facing = "left"
         end
@@ -84,7 +85,7 @@ function Player:update(dt)
     if self.game.input.pressed(self.keys.right) then
         dx = dx + self.speed
 
-        if self.graphics.facing ~= "right" then
+        if self.graphics.animation and self.graphics.facing ~= "right" then
             self.graphics.animation:flipH()
             self.graphics.facing = "right"
         end
