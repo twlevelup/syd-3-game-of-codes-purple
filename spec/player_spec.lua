@@ -56,6 +56,28 @@ describe("Player", function()
             end)
         end)
 
+        describe("startPosition", function()
+          it("should start 10% from the left of the stage", function()
+            local player = Player:new(
+              mock_input('none'),
+                {
+                  stageWidth = 100
+                }
+            )
+            assert.is.equal(player.x, 10-(player.size.x/2))
+          end)
+
+          it("should start 10% from the bottom of the stage", function()
+            local player = Player:new(
+              mock_input('none'),
+              {
+                stageHeight = 100
+              }
+            )
+            assert.is.equal(player.y, 90-(player.size.y/2))
+          end)
+        end)
+
         describe("lastPosition", function()
             it("should store the last position before moving vertically", function()
                 orig_x = 10
