@@ -1,0 +1,1 @@
+GAME_TIME_FORMAT = "%M:%S"
