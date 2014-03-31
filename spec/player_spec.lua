@@ -15,6 +15,10 @@ describe("Player", function()
                             return false
                         end
                     end
+                },
+                window = {
+                    getWidth = function() return 800 end,
+                    getHeight = function() return 600 end
                 }
             }
         end
@@ -58,23 +62,26 @@ describe("Player", function()
 
         describe("startPosition", function()
           it("should start 10% from the left of the stage", function()
-            local player = Player:new(
-              mock_input('none'),
-                {
-                  stageWidth = 100
-                }
-            )
-            assert.is.equal(player.x, 10-(player.size.x/2))
+            local game = mock_input('none')
+
+            game.window.getWidth = function() return 600 end
+            local player = Player:new(game)
+            assert.is.equal(player.x, game.window.getWidth()*0.1-(player.size.x/2))
+
+            game.window.getWidth = function() return 400 end
+            local player = Player:new(game)
+            assert.is.equal(player.x, game.window.getWidth()*0.1-(player.size.x/2))
           end)
 
           it("should start 10% from the bottom of the stage", function()
-            local player = Player:new(
-              mock_input('none'),
-              {
-                stageHeight = 100
-              }
-            )
-            assert.is.equal(player.y, 90-(player.size.y/2))
+            local game = mock_input('none')
+
+            game.window.getHeight = function() return 800 end
+            local player = Player:new(game)
+            assert.is.equal(player.y, game.window.getHeight()*0.9-(player.size.y))
+            game.window.getHeight = function() return 400 end
+            local player = Player:new(game)
+            assert.is.equal(player.y, game.window.getHeight()*0.9-(player.size.y))
           end)
         end)
 
@@ -170,7 +177,7 @@ describe("Player", function()
             local player, collidingEntity
 
             before_each(function()
-                player = Player:new({})
+                player = Player:new(mock_input('none'))
                 player.size = {
                     x = 10,
                     y = 10
@@ -179,7 +186,7 @@ describe("Player", function()
                 player.y = 10
                 player.graphics.animation = mock_animation()
 
-                collidingEntity = Entity:new({})
+                collidingEntity = Entity:new(mock_input('none'))
                 collidingEntity.x = 10
                 collidingEntity.y = 10
                 collidingEntity.size = {
