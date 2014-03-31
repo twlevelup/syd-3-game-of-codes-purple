@@ -6,7 +6,7 @@ require 'version'
 
 love.animation = require 'vendor/anim8'
 
-local player = Player:new(love, {stageWidth = love.window.getWidth(), stageHeight = love.window.getHeight()})
+local player = Player:new(love)
 local entities = {
   Ground:new(love)
 }

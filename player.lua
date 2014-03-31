@@ -7,22 +7,18 @@ setmetatable(Player, {__index = Entity})
 
 function Player:new(game, config)
     local config = config or {}
-    
+
     local newPlayer = Entity:new(game)
     newPlayer.type = "player"
-    newPlayer.x = config.x or 400
-    newPlayer.y = config.y or 300
     newPlayer.size = config.size or {
         x = 98,
         y = 60
     }
 
-    if (config.stageWidth) then
-      newPlayer.x = config.stageWidth * 0.1 - (newPlayer.size.x/2)
-    end
-    if (config.stageHeight) then
-      newPlayer.y = config.stageHeight * 0.9 - (newPlayer.size.y/2)
-    end
+    newPlayer.x = config.x or
+        game.window.getWidth() * 0.1 - (newPlayer.size.x/2)
+    newPlayer.y = config.y or
+        game.window.getHeight() * 0.9 - (newPlayer.size.y/2)
 
 
     newPlayer.speed = config.speed or 5
