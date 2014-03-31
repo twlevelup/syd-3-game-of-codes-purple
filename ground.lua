@@ -3,8 +3,10 @@ require 'entity'
 Ground = {}
 Ground.__index = Ground
 
-function Ground:new()
+function Ground:new(game)
   local newGround = {
+    x = 0,
+    y = 0.9 * game.y,
     graphics = love.graphics
   }
 
@@ -12,5 +14,9 @@ function Ground:new()
 end
 
 function Ground:draw()
-  self.graphics.line(1, 1, 20, 20)
+  self.graphics.line(self.x, self.y, 20, 20)
 end
+
+function Ground:update(dt)
+end
+
