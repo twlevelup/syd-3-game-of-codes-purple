@@ -1,12 +1,15 @@
 require 'input'
 require 'player'
 require 'obstacle'
+require 'ground'
 require 'version'
 
 love.animation = require 'vendor/anim8'
 
-local entities = {}
 local player = Player:new(love, {stageWidth = love.window.getWidth(), stageHeight = love.window.getHeight()})
+local entities = {
+  Ground:new(love)
+}
 local obstacle = Obstacle:new(love, {x = 200, y = 200})
 
 function love.load()
