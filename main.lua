@@ -2,19 +2,23 @@ require 'input'
 require 'player'
 require 'obstacle'
 require 'timer'
+require 'ground'
 require 'version'
 
 love.animation = require 'vendor/anim8'
 
+
 local entities = {}
 local stageElements = {}
 local player = Player:new(love, {stageWidth = love.window.getWidth(), stageHeight = love.window.getHeight()})
+local ground = Ground:new(love)
 local obstacle = Obstacle:new(love, {x = 200, y = 200})
 local timer = Timer:new(love, {timeLimit = 100, stageWidth = love.window.getWidth(), stageHeight = love.window.getHeight()})
 
 function love.load()
     print("Version: " .. version)
 
+    table.insert(entities, ground)
     table.insert(entities, player)
     table.insert(entities, obstacle)
     table.insert(stageElements, timer)
