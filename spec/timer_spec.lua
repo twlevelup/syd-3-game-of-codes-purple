@@ -5,7 +5,7 @@ describe('Timer', function()
   describe('#toString', function()
     it('should display the correct format', function()
       local limitInSeconds = 110
-      local timer = Timer.new(limitInSeconds)
+      local timer = Timer:new(_, {timeLimit = limitInSeconds})
 
       assert.truthy(string.match(timer:toString(), '%d%d:%d%d'))
     end)
@@ -13,27 +13,25 @@ describe('Timer', function()
 
   describe('#update', function()
     it('should countdown 9 seconds', function()
-      local startTime = os.time{year=2014, month=3, day=27, hour=9, minute=16, sec=0}
-      local finishTime = os.time{year=2014, month=3, day=27, hour=9, minute=16, sec=9}
       local limitInSeconds = 110
-      local timer = Timer.new(limitInSeconds)
+      local timer = Timer:new(_, {timeLimit = limitInSeconds})
 
-      timer:update(startTime)
+      timer:update(0)
       assert.is.equal("01:50", timer:toString())
 
-      timer:update(finishTime)
+      timer:update(9)
       assert.is.equal("01:41", timer:toString())
     end)
 
     it('should stop at 00:00 and not go negative', function()
       local limitInSeconds = 10
-      local timer = Timer.new(limitInSeconds)
+      local timer = Timer:new(_, {timeLimit = limitInSeconds})
 
       for i=0, limitInSeconds + 1 do
-        local time = os.time{year=2014, month=3, day=27, hour=9, minute=16, sec=i}
-        timer:update(time)
+        timer:update(1)
         assert.is_not.equal("59:59", timer:toString())
       end
     end)
   end)
 end)
+

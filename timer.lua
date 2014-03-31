@@ -1,18 +1,34 @@
 require 'globals'
+require "entity"
 
 Timer = {}
 Timer.__index = Timer
+setmetatable(Timer, {__index = Entity})
 
-function Timer.new(timeLimit)
-  local timer = {
-    _timeLimit = timeLimit,
-    _startTime = 0,
-    _currentTime = 0,
-    _timeRemaining = 0,
-    _finished = false
+function Timer:new(game, config)
+  local config = config or {}
+
+  local newTimer = Entity:new(game)
+
+  newTimer.game = game
+  newTimer._timeLimit = config.timeLimit or 0
+  newTimer._timeRemaining = -1
+  newTimer._finished = false
+  newTimer.size = config.size or {
+      x = 50,
+      y = 60
   }
+  newTimer.x = config.x or 300
+  newTimer.y = config.y or 0
 
-  return setmetatable(timer, Timer)
+  if (config.stageWidth) then
+      newTimer.x = config.stageWidth * 0.9 - newTimer.size.x
+  end
+    if (config.stageHeight) then
+      newTimer.y = config.stageHeight * 0.1
+   end
+
+  return setmetatable(newTimer, self)
 end
 
 function Timer:update(currentTime)
@@ -20,16 +36,21 @@ function Timer:update(currentTime)
     return
   end
 
-  if(not self._startTime ) then
-    self._startTime = currentTime
+  if(self._timeRemaining==-1) then
+    self._timeRemaining = self._timeLimit
   end
-
-  local elapsedTime = currentTime - self._startTime
-  self._timeRemaining = self._timeLimit - elapsedTime
+  self._timeRemaining = self._timeRemaining - currentTime
 
   self._finished = (self:toString() == "00:00" and true or false)
 end
 
 function Timer:toString()
   return os.date(GAME_TIME_FORMAT, self._timeRemaining)
+end   
+
+function Timer:draw()
+  self.game.graphics.rectangle("line", self.x, self.y, 100, 50)
+  local fontHeight = self.game.graphics.getFont():getHeight()
+  self.game.graphics.printf(self:toString(), self.x, self.size.y+fontHeight, self.size.x, "center", 0, 2, 2)
 end
+
