@@ -1,11 +1,14 @@
 require 'input'
 require 'player'
 require 'obstacle'
+require 'ground'
 require 'version'
 
 love.animation = require 'vendor/anim8'
 
-local entities = {}
+local entities = {
+  Ground:new(love)
+}
 local player = Player:new(love, {x = 100, y = 100})
 local obstacle = Obstacle:new(love, {x = 200, y = 200})
 
