@@ -18,7 +18,7 @@ function Player:new(game, config)
     newPlayer.x = config.x or
         game.window.getWidth() * 0.1 - (newPlayer.size.x/2)
     newPlayer.y = config.y or
-        game.window.getHeight() * 0.9 - (newPlayer.size.y/2)
+        game.window.getHeight() * 0.9 - (newPlayer.size.y)
 
 
     newPlayer.speed = config.speed or 5

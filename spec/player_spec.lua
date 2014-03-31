@@ -78,10 +78,10 @@ describe("Player", function()
 
             game.window.getHeight = function() return 800 end
             local player = Player:new(game)
-            assert.is.equal(player.y, game.window.getHeight()*0.9-(player.size.y/2))
+            assert.is.equal(player.y, game.window.getHeight()*0.9-(player.size.y))
             game.window.getHeight = function() return 400 end
             local player = Player:new(game)
-            assert.is.equal(player.y, game.window.getHeight()*0.9-(player.size.y/2))
+            assert.is.equal(player.y, game.window.getHeight()*0.9-(player.size.y))
           end)
         end)
 
