@@ -6,33 +6,32 @@ require 'ground'
 require 'version'
 
 love.animation = require 'vendor/anim8'
+Gamestate = require "vendor/gamestate"
 
-local entities = {}
-local stageElements = {}
-local ground = Ground:new(love)
-local player = Player:new(love)
-local obstacle = Obstacle:new(love, {x = 200, y = 200})
-local timer = Timer:new(love, {timeLimit = 100, stageWidth = love.window.getWidth(), stageHeight = love.window.getHeight()})
+local game = {}
 
-function love.load()
-    print("Version: " .. version)
-
-    table.insert(entities, ground)
-    table.insert(entities, player)
-    table.insert(entities, obstacle)
-    table.insert(stageElements, timer)
-
-    love.input.bind('up', 'up')
-    love.input.bind('left', 'left')
-    love.input.bind('right', 'right')
-    love.input.bind('down', 'down')
+function game:init()
+  self.background = love.graphics.newImage("/assets/images/skyline-bg.png")
 end
 
-function love.update(dt)
-    for _, entity in pairs(entities) do
-        entity:update(dt)
+function game:enter()
+  self.entities = {}
+  self.stageElements = {}
+  self.ground = Ground:new(love)
+  self.player = Player:new(love)
+  self.timer = Timer:new(love, {timeLimit = 100, stageWidth = love.window.getWidth(), stageHeight = love.window.getHeight()})
+  table.insert(self.entities, self.ground)
+  table.insert(self.entities, self.player)
+  table.insert(self.stageElements, self.timer)
+end
 
-        for _, other in pairs(entities) do
+function game:update(dt)
+  for _, entity in pairs(self.stageElements) do
+      entity:update(dt)
+  end
+  for _, entity in pairs(self.entities) do
+        entity:update(dt)
+        for _, other in pairs(self.entities) do
             if other ~= entity then
                 if entity:collidingWith(other) then
                     entity:collide(other)
@@ -40,17 +39,27 @@ function love.update(dt)
             end
         end
     end
-    for _, entity in pairs(stageElements) do
-        entity:update(dt)
+end
+
+function game:draw()
+    sx = love.window.getWidth() / self.background:getWidth()
+    love.graphics.draw(self.background, 0, 0, 0, sx, sx)
+    for _, e in pairs(self.stageElements) do
+        e:draw()
+    end
+    for _, e in pairs(self.entities) do
+        e:draw()
     end
 end
 
-function love.draw()
-    for _, e in pairs(entities) do
-        e:draw()
-    end
-    for _, e in pairs(stageElements) do
-        e:draw()
-    end
-    
+function love.load()
+    print("Version: " .. version)
+
+    love.input.bind('up', 'up')
+    love.input.bind('left', 'left')
+    love.input.bind('right', 'right')
+    love.input.bind('down', 'down')
+    Gamestate.registerEvents()
+    Gamestate.switch(game)
 end
+
