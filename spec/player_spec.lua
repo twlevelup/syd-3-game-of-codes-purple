@@ -1,28 +1,11 @@
 require 'player'
 require 'entity'
+require 'spec.love-mocks'
 
 describe("Player", function()
     local dt = 1
 
     describe("#update", function()
-        mock_input = function(action)
-            return {
-                input = {
-                    pressed = function(a)
-                        if a == action then
-                            return true
-                        else
-                            return false
-                        end
-                    end
-                },
-                window = {
-                    getWidth = function() return 800 end,
-                    getHeight = function() return 600 end
-                }
-            }
-        end
-
         mock_animation = function()
             local animation_spy = {
                 update = spy.new(function(dt) end),
@@ -61,27 +44,11 @@ describe("Player", function()
         end)
 
         describe("startPosition", function()
-          it("should start 10% from the left of the stage", function()
-            local game = mock_input('none')
-
-            game.window.getWidth = function() return 600 end
-            local player = Player:new(game)
-            assert.is.equal(player.x, game.window.getWidth()*0.1-(player.size.x/2))
-
-            game.window.getWidth = function() return 400 end
-            local player = Player:new(game)
-            assert.is.equal(player.x, game.window.getWidth()*0.1-(player.size.x/2))
-          end)
-
-          it("should start 10% from the bottom of the stage", function()
-            local game = mock_input('none')
-
-            game.window.getHeight = function() return 800 end
-            local player = Player:new(game)
-            assert.is.equal(player.y, game.window.getHeight()*0.9-(player.size.y))
-            game.window.getHeight = function() return 400 end
-            local player = Player:new(game)
-            assert.is.equal(player.y, game.window.getHeight()*0.9-(player.size.y))
+          it("should start 10% from the bottom left of the stage", function()
+            local love = mock_love()
+            local player = Player:new(love)
+            assert.is.equal(player.x, love.window.getWidth()*0.1-(player.size.x/2))
+            assert.is.equal(player.y, love.window.getHeight()*0.9-(player.size.y))
           end)
         end)
 

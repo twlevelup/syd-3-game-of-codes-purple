@@ -19,7 +19,7 @@ function game:enter()
   self.stageElements = {}
   self.ground = Ground:new(love)
   self.player = Player:new(love)
-  self.timer = Timer:new(love, {timeLimit = 100, stageWidth = love.window.getWidth(), stageHeight = love.window.getHeight()})
+  self.timer = Timer:new(love, {timeLimit = 100})
   table.insert(self.entities, self.ground)
   table.insert(self.entities, self.player)
   table.insert(self.stageElements, self.timer)

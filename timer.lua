@@ -18,15 +18,8 @@ function Timer:new(game, config)
       x = 50,
       y = 60
   }
-  newTimer.x = config.x or 300
-  newTimer.y = config.y or 0
-
-  if (config.stageWidth) then
-      newTimer.x = config.stageWidth * 0.9 - newTimer.size.x
-  end
-    if (config.stageHeight) then
-      newTimer.y = config.stageHeight * 0.1
-   end
+  newTimer.x = config.x or game.window.getWidth() * 0.9 - newTimer.size.x
+  newTimer.y = config.y or game.window.getHeight() * 0.1
 
   return setmetatable(newTimer, self)
 end
