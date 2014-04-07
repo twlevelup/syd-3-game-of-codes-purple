@@ -31,14 +31,37 @@ function Entity:collidingWith(other)
     local bounds = self:bounds()
     local other = other:bounds()
 
-    local my_left_overlaps_their_right = bounds.left <= other.right and bounds.right >= other.right
-    local my_right_overlaps_their_left = bounds.right >= other.left and bounds.left <= other.left
+    print("this.bounds: l", bounds.left, "r", bounds.right)
+    print("other.bounds: l", other.left, "r", other.right)
 
-    local my_top_overlaps_their_bottom = bounds.top <= other.bottom and bounds.bottom >= other.bottom
-    local my_bottom_overlaps_their_top = bounds.bottom >= other.top and bounds.top <= other.top
+    local my_left_overlaps_their_right = bounds.left <= other.right and
+                                         bounds.right >= other.right
+    local my_right_overlaps_their_left = bounds.right >= other.left and
+                                         bounds.left <= other.left
 
-    return (my_left_overlaps_their_right or my_right_overlaps_their_left) and
-            (my_top_overlaps_their_bottom or my_bottom_overlaps_their_top)
+    local contained_in_them_horizontally = bounds.left >= other.left and bounds.right <= other.right
+    local contained_in_them_vertically = bounds.bottom <= other.bottom and bounds.top >= other.top
+
+    local my_top_overlaps_their_bottom = bounds.top <= other.bottom and
+                                         bounds.bottom >= other.bottom
+    local my_bottom_overlaps_their_top = bounds.bottom >= other.top and
+                                         bounds.top <= other.top
+
+                                         print("one of these should be true", my_left_overlaps_their_right,
+                                            my_right_overlaps_their_left,
+                                            "and one of these should be true",
+                                            my_top_overlaps_their_bottom,
+                                            my_bottom_overlaps_their_top)
+
+    local is_colliding = (my_left_overlaps_their_right or
+                          my_right_overlaps_their_left or
+                          contained_in_them_horizontally) and
+                         (my_top_overlaps_their_bottom or
+                          my_bottom_overlaps_their_top or
+                          contained_in_them_vertically)
+
+    -- print(is_colliding)
+    return is_colliding
 end
 
 function Entity:collide(other)
