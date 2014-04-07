@@ -73,6 +73,30 @@ describe("Entity", function()
             assert.is.equal(baseEntity:collidingWith(collidingEntity), true)
         end)
 
+        it("should collide when an entity is horizontally inside another entity's bounding box", function()
+          local collider = Entity:new({})
+          collider.x  = 12
+          collider.y = 12
+          collider.size = {
+            x = 3,
+            y = 12
+          }
+
+          assert.is.equal(collider:collidingWith(baseEntity), true)
+        end)
+
+        it("should collide when an entity is vertically inside another entity's bounding box", function()
+          local collider = Entity:new({})
+          collider.x  = 12
+          collider.y = 12
+          collider.size = {
+            x = 12,
+            y = 3
+          }
+
+          assert.is.equal(collider:collidingWith(baseEntity), true)
+        end)
+
         it("should collide when two entities bounding boxes are touching vertically", function()
             collidingEntity.x = 10
             collidingEntity.y = 20
