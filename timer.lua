@@ -36,7 +36,7 @@ function Timer:update(currentTime)
 end
 
 function Timer:toString()
-    return os.date(GAME_TIME_FORMAT, self._timeRemaining)
+    return string.sub(os.date(GAME_TIME_FORMAT, self._timeRemaining), 2)
 end   
 
 function Timer:draw()

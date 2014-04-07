@@ -31,7 +31,7 @@ function Player:new(game, config)
     }
 
     newPlayer.graphics = config.graphics or {
-        source = "assets/images/box.png",
+        source = "assets/images/nyancat-sprites.png",
         facing = "right"
     }
 
@@ -51,7 +51,7 @@ function Player:new(game, config)
         newPlayer.sound.moving.sample:setLooping(true)
     end
 
-    --[[
+    
     if game.graphics ~= nil and game.animation ~= nil then
         newPlayer.graphics.sprites = game.graphics.newImage(newPlayer.graphics.source)
         newPlayer.graphics.grid = game.animation.newGrid(
@@ -63,7 +63,7 @@ function Player:new(game, config)
             newPlayer.graphics.grid("1-1", 1),
             0.05
         )
-    end]]--
+    end
 
     return setmetatable(newPlayer, self)
 end

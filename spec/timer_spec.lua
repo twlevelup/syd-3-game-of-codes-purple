@@ -11,7 +11,7 @@ describe('Timer', function()
       local limitInSeconds = 110
       local timer = Timer:new(love, {timeLimit = limitInSeconds})
 
-      assert.truthy(string.match(timer:toString(), '%d%d:%d%d'))
+      assert.truthy(string.match(timer:toString(), '%d:%d%d'))
     end)
   end)
 
@@ -21,13 +21,13 @@ describe('Timer', function()
       local timer = Timer:new(love, {timeLimit = limitInSeconds})
 
       timer:update(0)
-      assert.is.equal("01:50", timer:toString())
+      assert.is.equal("1:50", timer:toString())
 
       timer:update(9)
-      assert.is.equal("01:41", timer:toString())
+      assert.is.equal("1:41", timer:toString())
     end)
 
-    it('should stop at 00:00 and not go negative', function()
+    it('should stop at 0:00 and not go negative', function()
       local limitInSeconds = 10
       local timer = Timer:new(love, {timeLimit = limitInSeconds})
 
