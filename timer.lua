@@ -32,11 +32,11 @@ function Timer:update(currentTime)
     end
     self._timeRemaining = self._timeRemaining - currentTime
 
-    self._finished = (self:toString() == "00:00" and true or false)
+    self._finished = (self:toString() == "0:00" and true or false)
 end
 
 function Timer:toString()
-    return os.date(GAME_TIME_FORMAT, self._timeRemaining)
+    return string.sub(os.date(GAME_TIME_FORMAT, self._timeRemaining), 2)
 end   
 
 function Timer:draw()

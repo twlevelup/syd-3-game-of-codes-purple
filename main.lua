@@ -19,7 +19,7 @@ function game:enter()
   self.stageElements = {}
   self.ground = Ground:new(love)
   self.player = Player:new(love)
-  self.timer = Timer:new(love, {timeLimit = 100})
+  self.timer = Timer:new(love, {timeLimit = 110})
   table.insert(self.entities, self.ground)
   table.insert(self.entities, self.player)
   table.insert(self.stageElements, self.timer)
@@ -42,12 +42,17 @@ function game:update(dt)
 end
 
 function game:draw()
+    --Draw background
     sx = love.window.getWidth() / self.background:getWidth()
     love.graphics.draw(self.background, 0, 0, 0, sx, sx)
-    for _, e in pairs(self.stageElements) do
+
+    --Draw all entities
+    for _, e in pairs(self.entities) do
         e:draw()
     end
-    for _, e in pairs(self.entities) do
+
+    --Draw stage elements
+    for _, e in pairs(self.stageElements) do
         e:draw()
     end
 end
