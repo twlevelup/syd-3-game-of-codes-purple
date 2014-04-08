@@ -84,4 +84,90 @@ describe("Entity", function()
             assert.is.equal(baseEntity:collidingWith(nonCollidingEntity), false)
         end)
     end)
+
+    describe("physics", function()
+        describe("#calculateVelocity", function()
+            it("should have a velocity of zero", function()
+                local dt = 10
+                local currentVel = 0
+                local acceleration = 0
+                local drag = 0
+                assert.is.equal(0, calculateVelocity(dt, currentVel, acceleration, drag))
+            end)
+            it("should update it's acceleration", function()
+                local dt = 10
+                local currentVel = 0
+                local acceleration = 1
+                local drag = 0
+                assert.is.equal(10, calculateVelocity(dt, currentVel, acceleration, drag))
+            end)
+            describe('positive velocity', function()
+                it("should decrement velocity by dt * drag", function()
+                    local dt = 10
+                    local currentVel = 100
+                    local acceleration = 0
+                    local drag = 1
+                    assert.is.equal(90, calculateVelocity(dt, currentVel, acceleration, drag))
+                end)
+                it("should reset velocity to zero", function()
+                    local dt = 10
+                    local currentVel = 1
+                    local acceleration = 0
+                    local drag = 1
+                    assert.is.equal(0, calculateVelocity(dt, currentVel, acceleration, drag))
+                end)
+
+            end)
+            describe('negative velocity', function()
+                it("should decrement velocity by dt * drag", function()
+                    local dt = 10
+                    local currentVel = -100
+                    local acceleration = 0
+                    local drag = 1
+                    assert.is.equal(-90, calculateVelocity(dt, currentVel, acceleration, drag))
+                end)
+                it("should reset velocity to zero", function()
+                    local dt = 10
+                    local currentVel = -1
+                    local acceleration = 0
+                    local drag = 1
+                    assert.is.equal(0, calculateVelocity(dt, currentVel, acceleration, drag))
+                end)
+            end)
+        end)
+        describe('#calculateNewCoordinateFromVelocity', function()
+            it('should add the velocity to when not zero', function()
+                local coordinate = 10
+                local velocity = 5
+                local dt = 10
+                assert.is.equal(60, calculateNewCoordinateFromVelocity(coordinate, velocity, dt))
+            end)
+            it('should return the coordinate when velocity is zero', function()
+                local coordinate = 10
+                local velocity = 0
+                local dt = 10
+                assert.is.equal(10, calculateNewCoordinateFromVelocity(coordinate, velocity, dt))
+            end)
+        end)
+        describe('#getConstrainedPoint', function()
+            it('should return the same value when within range', function()
+                local value = 50
+                local min = 10
+                local max = 100
+                assert.is.equal(50, getConstrainedPoint(value, min, max))
+            end)
+            it('should return the lower limit when point is below it', function()
+                local value = -20
+                local min = 10
+                local max = 100
+                assert.is.equal(10, getConstrainedPoint(value, min, max))
+            end)
+            it('should return the upper limit when point is above it', function()
+                local value = 150
+                local min = 10
+                local max = 100
+                assert.is.equal(100, getConstrainedPoint(value, min, max))
+            end)
+        end)
+    end)
 end)
