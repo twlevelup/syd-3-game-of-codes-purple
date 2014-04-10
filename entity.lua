@@ -9,8 +9,8 @@ function Entity:new(game)
         vel = {x = 0, y = 0},
         minVel = {x = -math.huge, y = -math.huge},
         maxVel = {x = math.huge, y = math.huge},
-        acc = {x = 0, y = 200},
-        drag = {x = 50, y = 0}
+        acc = {x = 0, y = 1000},
+        drag = {x = 0, y = 0}
     }
 
     return setmetatable(newEntity, self)
@@ -59,8 +59,6 @@ function Entity:collidingWith(other)
                          (my_top_overlaps_their_bottom or
                           my_bottom_overlaps_their_top or
                           contained_in_them_vertically)
-
-    -- print(is_colliding)
     return is_colliding
 end
 
@@ -70,10 +68,10 @@ end
 function Entity:updatePhysics(dt)
     self.x = calculateNewCoordinateFromVelocity(self.x, self.vel.x, dt)
     self.y = calculateNewCoordinateFromVelocity(self.y, self.vel.y, dt)
-    self.vel.x = calculateVelocity(dt, self.vel.x, self.acc.x, self.drag.x, self.minVel.x, self.maxVel.x)
-    self.vel.y = calculateVelocity(dt, self.vel.y, self.acc.y, self.drag.y, self.minVel.y, self.maxVel.y)
-    if self.vel.y > self.maxVel.y then self.vel.y = self.maxVel.y end
-    if self.vel.y < self.minVel.y then self.vel.y = self.minVel.y end
+    self.vel.x = calculateVelocity(dt, self.vel.x, self.acc.x, self.drag.x)
+    self.vel.y = calculateVelocity(dt, self.vel.y, self.acc.y, self.drag.y)
+    self.vel.x = getConstrainedPoint(self.vel.x, self.minVel.x, self.maxVel.x)
+    self.vel.y = getConstrainedPoint(self.vel.y, self.minVel.y, self.maxVel.y)
 end
 
 function calculateNewCoordinateFromVelocity(coordinate, velocity, dt)
@@ -81,11 +79,11 @@ function calculateNewCoordinateFromVelocity(coordinate, velocity, dt)
 end
 
 function calculateVelocity(dt, currentVel, acceleration, drag)
-    local velocity = 0
+    local velocity = currentVel
     if acceleration and acceleration ~= 0 then
         velocity = currentVel + acceleration * dt
     else
-        if drag then
+        if drag and drag ~= 0 then
             if currentVel > 0 then
                 velocity = currentVel - drag * dt
                 if velocity < 0 then velocity = 0 end

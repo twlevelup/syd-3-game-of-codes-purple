@@ -16,7 +16,7 @@ describe("Player", function()
             return animation_spy
         end
 
-        mock_sound = function()
+        --[[mock_sound = function()
             local sound_spy = {
                 play = spy.new(function() end),
                 stop = spy.new(function() end)
@@ -41,7 +41,7 @@ describe("Player", function()
 
                 assert.spy(player.sound.moving.sample.stop).was.called()
             end)
-        end)
+        end)]]--
 
         describe("startPosition", function()
           it("should start 10% from the bottom left of the stage", function()
@@ -57,17 +57,18 @@ describe("Player", function()
                 orig_x = 10
                 orig_y = 10
                 local player = Player:new(
-                    mock_input('up'),
+                    mock_input('none'),
                     {
                         x = orig_x,
                         y = orig_y,
-                        speed = 1
                     }
                 )
+                player.acc = {x = 0, y = 0}
+                player.vel = {x = 0, y = 5}
                 player:update(dt)
 
                 assert.is.equal(player.x, 10)
-                assert.is.equal(player.y, 9)
+                assert.is.equal(player.y, 15)
                 assert.are.same(player.lastPosition, {x = orig_x, y = orig_y})
             end)
 
@@ -75,18 +76,17 @@ describe("Player", function()
                 orig_x = 10
                 orig_y = 10
                 local player = Player:new(
-                    mock_input('left'),
+                    mock_input('none'),
                     {
                         x = orig_x,
                         y = orig_y,
-                        speed = 1
                     }
                 )
-                player.graphics.animation = mock_animation()
-
+                player.acc = {x = 0, y = 0}
+                player.vel = {x = 5, y = 0}
                 player:update(dt)
 
-                assert.is.equal(player.x, 9)
+                assert.is.equal(player.x, 15)
                 assert.is.equal(player.y, 10)
                 assert.are.same(player.lastPosition, {x = orig_x, y = orig_y})
             end)
@@ -130,7 +130,7 @@ describe("Player", function()
                 end)
 
                 it("should update the animation state when the player is moving", function()
-                    local player = Player:new(mock_input('up'))
+                    local player = Player:new(mock_input('right'))
                     player.graphics.animation = mock_animation()
 
                     player:update(dt)
@@ -201,40 +201,51 @@ describe("Player", function()
 
         describe("player movement", function()
             it("should decrement the player's y if the up-arrow is pressed", function()
-                local player = Player:new(mock_input('up'))
+                local player = Player:new(mock_input('space'))
+                player.acc = {x = 0, y = 0}
+                player.vel = {x = 0, y = 0}
+                player.jumpSpeed = -200
                 local orig_y = player.y
 
                 player:update(dt)
 
-                assert.is.equal(orig_y - player.speed, player.y)
+                assert.is.equal(orig_y - 200, player.y)
             end)
 
             it("should increment the player's y if the down-arrow is pressed", function()
                 local player = Player:new(mock_input('down'))
+                player.acc = {x = 0, y = 0}
+                player.vel = {x = 0, y = 0}
+                player.speed = 200
                 local orig_y = player.y
 
                 player:update(dt)
 
-                assert.is.equal(orig_y + player.speed, player.y)
+                assert.is.equal(orig_y + 200, player.y)
             end)
 
             it("should decrement the player's x if the left-arrow is pressed", function()
                 local player = Player:new(mock_input('left'))
-                player.graphics.animation = mock_animation()
+                player.acc = {x = 0, y = 0}
+                player.vel = {x = 0, y = 0}
+                player.speed = 200
                 local orig_x = player.x
 
                 player:update(dt)
 
-                assert.is.equal(orig_x - player.speed, player.x)
+                assert.is.equal(orig_x - 200, player.x)
             end)
 
             it("should increment the player's x if the right-arrow is pressed", function()
                 local player = Player:new(mock_input('right'))
+                player.acc = {x = 0, y = 0}
+                player.vel = {x = 0, y = 0}
+                player.speed = 200
                 local orig_x = player.x
 
                 player:update(dt)
 
-                assert.is.equal(orig_x + player.speed, player.x)
+                assert.is.equal(orig_x + 200, player.x)
             end)
         end)
     end)

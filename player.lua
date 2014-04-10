@@ -14,6 +14,10 @@ function Player:new(game, config)
         x = 98,
         y = 60
     }
+    newPlayer.isJumping = false
+    newPlayer.jumpSpeed = -600
+    newPlayer.speed = 500
+    newPlayer.drag = {x = 500, y = 0}
 
     newPlayer.x = config.x or
         game.window.getWidth() * 0.1 - (newPlayer.size.x/2)
@@ -21,10 +25,8 @@ function Player:new(game, config)
         game.window.getHeight() * 0.9 - (newPlayer.size.y)
 
 
-    newPlayer.speed = config.speed or 5
-
     newPlayer.keys = config.keys or {
-        up = "up",
+        jump = "space",
         down = "down",
         left = "left",
         right = "right"
@@ -51,7 +53,7 @@ function Player:new(game, config)
         newPlayer.sound.moving.sample:setLooping(true)
     end
 
-    
+
     if game.graphics ~= nil and game.animation ~= nil then
         newPlayer.graphics.sprites = game.graphics.newImage(newPlayer.graphics.source)
         newPlayer.graphics.grid = game.animation.newGrid(
@@ -69,16 +71,20 @@ function Player:new(game, config)
 end
 
 function Player:collide(other)
-    self.x = self.lastPosition.x
-    self.y = self.lastPosition.y
+    if self.x == self.lastPosition.x and self.y == self.lastPosition.y then
+        self.y = self.y - 1
+    else
+        self.x = self.lastPosition.x
+        self.y = self.lastPosition.y
+    end
+    self.vel.y = 0
+    self.isJumping = false
 end
 
 function Player:update(dt)
-    local dx = 0
-    local dy = 0
 
     if self.game.input.pressed(self.keys.left) then
-        dx = dx - self.speed
+        self.vel.x = -self.speed
 
         if self.graphics.animation and self.graphics.facing ~= "left" then
             self.graphics.animation:flipH()
@@ -87,7 +93,7 @@ function Player:update(dt)
     end
 
     if self.game.input.pressed(self.keys.right) then
-        dx = dx + self.speed
+        self.vel.x = self.speed
 
         if self.graphics.animation and self.graphics.facing ~= "right" then
             self.graphics.animation:flipH()
@@ -95,12 +101,15 @@ function Player:update(dt)
         end
     end
 
-    if self.game.input.pressed(self.keys.up) then
-        dy = dy - self.speed
+    if self.game.input.pressed(self.keys.jump) then
+        if not self.isJumping then
+            self.vel.y = self.jumpSpeed
+            self.isJumping = true
+        end
     end
 
     if self.game.input.pressed(self.keys.down) then
-        dy = dy + self.speed
+        self.vel.y = self.speed
     end
 
     self.lastPosition = {
@@ -108,22 +117,23 @@ function Player:update(dt)
         y = self.y
     }
 
-    self.x = self.x + dx
-    self.y = self.y + dy
-
     if self.graphics.animation ~= nil then
-        if dx ~= 0 or dy ~= 0 then
+        if self.vel.x ~= 0 or self.vel.y ~= 0 then
             self.graphics.animation:update(dt)
         else
             self.graphics.animation:gotoFrame(1)
         end
     end
 
-    if self.sound.moving.sample ~= nil then
-        if dx ~= 0 or dy ~= 0 then
+    self:updatePhysics(dt)
+
+
+
+    --[[if self.sound.moving.sample ~= nil then
+        if self.vel.x ~= 0 or self.vel.y ~= 0 then
             self.sound.moving.sample:play()
         else
             self.sound.moving.sample:stop()
         end
-    end
+    end]]--
 end

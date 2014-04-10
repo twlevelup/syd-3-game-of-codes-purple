@@ -60,10 +60,10 @@ end
 function love.load()
     print("Version: " .. version)
 
-    love.input.bind('up', 'up')
     love.input.bind('left', 'left')
     love.input.bind('right', 'right')
     love.input.bind('down', 'down')
+    love.input.bind(' ', 'space')
     Gamestate.registerEvents()
     Gamestate.switch(game)
 end

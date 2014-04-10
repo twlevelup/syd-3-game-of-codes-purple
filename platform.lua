@@ -7,7 +7,7 @@ setmetatable(Platform, {__index = Entity})
 function Platform:new(game)
     local config = config or {}
     local newPlatform = Entity:new(game)  
-    
+
     newPlatform.height = 30
     newPlatform.width = 100 or config.width
     newPlatform.size = config.size or {
@@ -15,7 +15,6 @@ function Platform:new(game)
         y = 100
     }
 
-          
     return setmetatable(newPlatform, self)
 end
 
