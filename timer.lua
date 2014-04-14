@@ -1,5 +1,8 @@
 require 'globals'
 require "entity"
+require 'stageTransition'
+
+Gamestate = require "vendor/gamestate"
 
 Timer = {}
 Timer.__index = Timer
@@ -24,6 +27,7 @@ end
 
 function Timer:update(currentTime)
     if(self._finished) then
+        Gamestate.push(stageTransition)
         return
     end
 
