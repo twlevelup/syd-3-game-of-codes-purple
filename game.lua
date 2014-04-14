@@ -2,6 +2,7 @@ require 'player'
 require 'timer'
 require 'ground'
 require 'platform'
+require 'backdrop'
 
 game = {}
 
@@ -18,8 +19,10 @@ function game:enter()
   self.ground = Ground:new(love, {wind = wind})
   self.player = Player:new(love, {gravity = gravity, wind = wind})
   self.timer = Timer:new(love, {timeLimit = 110})
+  self.backdrop = Backdrop:new(love)
   table.insert(self.entities, self.ground)
   table.insert(self.entities, self.player)
+  table.insert(self.stageElements, self.backdrop)
   table.insert(self.stageElements, self.timer)
 end
 
@@ -49,8 +52,8 @@ function game:draw()
         e:draw()
     end
 
-    --Draw stage elements
-    for _, e in pairs(self.stageElements) do
+    --Draw all entities
+    for _, e in pairs(self.entities) do
         e:draw()
     end
 end

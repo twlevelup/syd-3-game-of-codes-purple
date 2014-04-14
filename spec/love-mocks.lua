@@ -6,6 +6,11 @@ mock_love = function()
         window = {
             getWidth = function() return 800 end,
             getHeight = function() return 600 end
+        },
+        graphics = {
+            draw = spy.new(function() end),
+            newImage = spy.new(function() end),
+            newQuad = spy.new(function() end)
         }
     }
     return love
