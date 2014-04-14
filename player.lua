@@ -24,14 +24,6 @@ function Player:new(game, config)
     newPlayer.y = config.y or
         game.window.getHeight() * 0.9 - (newPlayer.size.y)
 
-
-    newPlayer.keys = config.keys or {
-        jump = "space",
-        down = "down",
-        left = "left",
-        right = "right"
-    }
-
     newPlayer.graphics = config.graphics or {
         source = "assets/images/nyancat-sprites.png",
         facing = "right"
@@ -83,7 +75,7 @@ end
 
 function Player:update(dt)
 
-    if self.game.input.pressed(self.keys.left) then
+    if self.game.input.pressed('left') then
         self.vel.x = -self.speed
 
         if self.graphics.animation and self.graphics.facing ~= "left" then
@@ -92,7 +84,7 @@ function Player:update(dt)
         end
     end
 
-    if self.game.input.pressed(self.keys.right) then
+    if self.game.input.pressed('right') then
         self.vel.x = self.speed
 
         if self.graphics.animation and self.graphics.facing ~= "right" then
@@ -101,14 +93,14 @@ function Player:update(dt)
         end
     end
 
-    if self.game.input.pressed(self.keys.jump) then
+    if self.game.input.pressed('jump') then
         if not self.isJumping then
             self.vel.y = self.jumpSpeed
             self.isJumping = true
         end
     end
 
-    if self.game.input.pressed(self.keys.down) then
+    if self.game.input.pressed('down') then
         self.vel.y = self.speed
     end
 

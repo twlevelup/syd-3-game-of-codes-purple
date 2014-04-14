@@ -201,7 +201,7 @@ describe("Player", function()
 
         describe("player movement", function()
             it("should decrement the player's y if the up-arrow is pressed", function()
-                local player = Player:new(mock_input('space'))
+                local player = Player:new(mock_input('jump'))
                 player.acc = {x = 0, y = 0}
                 player.vel = {x = 0, y = 0}
                 player.jumpSpeed = -200
