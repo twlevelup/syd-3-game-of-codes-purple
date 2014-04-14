@@ -6,6 +6,8 @@ describe('Timer', function()
 
   local love = mock_love()
 
+
+
   describe('#toString', function()
     it('should display the correct format', function()
       local limitInSeconds = 110
@@ -36,6 +38,7 @@ describe('Timer', function()
         assert.is_not.equal("59:59", timer:toString())
       end
     end)
+
     it('should be at the top right on 10% margins', function()
       local timer = Timer:new(love, {timeLimit = 10})
       local xpos = (love.window.getWidth() * 0.9 - timer.size.x)
@@ -44,5 +47,6 @@ describe('Timer', function()
       assert.is.equal(timer.y, ypos)
     end)
   end)
-end)
 
+  
+end)
