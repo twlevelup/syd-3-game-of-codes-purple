@@ -7,23 +7,24 @@ require 'backdrop'
 game = {}
 
 local gravity = 1000
-local wind = -100
+local wind = 0
 
 function game:init()
-  self.background = love.graphics.newImage("/assets/images/skyline-bg.png")
-end
-
-function game:enter()
   self.entities = {}
   self.stageElements = {}
   self.ground = Ground:new(love, {wind = wind})
   self.player = Player:new(love, {gravity = gravity, wind = wind})
   self.timer = Timer:new(love, {timeLimit = 110})
   self.backdrop = Backdrop:new(love)
-  table.insert(self.entities, self.ground)
-  table.insert(self.entities, self.player)
+
   table.insert(self.stageElements, self.backdrop)
   table.insert(self.stageElements, self.timer)
+
+  table.insert(self.entities, self.ground)
+  table.insert(self.entities, self.player)
+end
+
+function game:enter()
 end
 
 function game:update(dt)
@@ -43,12 +44,8 @@ function game:update(dt)
 end
 
 function game:draw()
-    --Draw background
-    sx = love.window.getWidth() / self.background:getWidth()
-    love.graphics.draw(self.background, 0, 0, 0, sx, sx)
-
     --Draw all entities
-    for _, e in pairs(self.entities) do
+    for _, e in pairs(self.stageElements) do
         e:draw()
     end
 
