@@ -5,9 +5,11 @@ function Input()
 
     local self = {}
 
+    self.mapping = {}
 
     self.bind = function(key, action)
         bindings[key] = action
+        self.mapping[action] = key
     end
 
     self.pressed = function(action)

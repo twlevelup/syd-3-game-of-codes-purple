@@ -54,3 +54,9 @@ function game:draw()
         e:draw()
     end
 end
+
+function game:keyreleased(key)
+    if key == love.input.mapping['pause'] then
+        Gamestate.push(pause)
+    end
+end
