@@ -7,58 +7,23 @@ require 'version'
 
 love.animation = require 'vendor/anim8'
 Gamestate = require "vendor/gamestate"
+states = require 'states'
 
-local game = {}
+game = {}
 
-function game:init()
-  self.background = love.graphics.newImage("/assets/images/skyline-bg.png")
+function game:start()
+  Gamestate.switch(states.stage1, self)
 end
 
-function game:enter()
-  self.entities = {}
-  self.stageElements = {}
-  self.ground = Ground:new(love)
-  self.player = Player:new(love)
-  self.timer = Timer:new(love, {timeLimit = 110})
-  table.insert(self.entities, self.ground)
-  table.insert(self.entities, self.player)
-  table.insert(self.stageElements, self.timer)
+function game:pause()
+  Gamestate.push(states.pause, self)
 end
 
-function game:update(dt)
+-- The quit keybinding works from any state:
+function love.update(dt)
   if love.input.pressed('quit') then
-    love.event.push('quit')
+    love.event.quit()
   end
-
-  for _, entity in pairs(self.stageElements) do
-      entity:update(dt)
-  end
-  for _, entity in pairs(self.entities) do
-        entity:update(dt)
-        for _, other in pairs(self.entities) do
-            if other ~= entity then
-                if entity:collidingWith(other) then
-                    entity:collide(other)
-                end
-            end
-        end
-    end
-end
-
-function game:draw()
-    --Draw background
-    sx = love.window.getWidth() / self.background:getWidth()
-    love.graphics.draw(self.background, 0, 0, 0, sx, sx)
-
-    --Draw all entities
-    for _, e in pairs(self.entities) do
-        e:draw()
-    end
-
-    --Draw stage elements
-    for _, e in pairs(self.stageElements) do
-        e:draw()
-    end
 end
 
 function love.load()
@@ -69,7 +34,8 @@ function love.load()
     love.input.bind('down', 'down')
     love.input.bind(' ', 'jump')
     love.input.bind('escape', 'quit')
-    Gamestate.registerEvents()
-    Gamestate.switch(game)
-end
+    love.input.bind('p', 'pause')
 
+    Gamestate.registerEvents()
+    game:start()
+end
