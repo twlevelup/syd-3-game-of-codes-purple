@@ -1,7 +1,9 @@
 pause = {}
 
 function pause:draw()
-  love.graphics.print("Paused. Press '" .. love.input.mapping['pause'] .. "' to continue", 10, 10)
+  -- local text = "Paused.\nPress '" .. love.input.mapping['pause'] .. "' to continue"
+  local text = "Paused."
+  love.graphics.print(text, love.window.getWidth() / 2, love.window.getHeight() / 2)
 end
 
 function pause:update(dt)
