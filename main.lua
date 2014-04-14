@@ -3,6 +3,7 @@ require 'player'
 require 'obstacle'
 require 'timer'
 require 'ground'
+require 'backdrop'
 require 'version'
 
 love.animation = require 'vendor/anim8'
