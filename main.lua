@@ -26,6 +26,10 @@ function game:enter()
 end
 
 function game:update(dt)
+  if love.input.pressed('quit') then
+    love.event.push('quit')
+  end
+
   for _, entity in pairs(self.stageElements) do
       entity:update(dt)
   end
