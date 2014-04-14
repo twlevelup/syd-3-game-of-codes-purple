@@ -17,7 +17,7 @@ function Player:new(game, config)
     newPlayer.isJumping = false
     newPlayer.jumpSpeed = -600
     newPlayer.speed = 500
-    newPlayer.drag = {x = 500, y = 0}
+    newPlayer.drag = {x = 10000, y = 0}
 
     newPlayer.x = config.x or
         game.window.getWidth() * 0.1 - (newPlayer.size.x/2)
