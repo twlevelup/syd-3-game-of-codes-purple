@@ -8,10 +8,10 @@ function Platform:new(game, config)
     local config = config or {}
     local newPlatform = Entity:new(game, config)
     newPlatform.type = "platform"
-    newPlatform.x = game.window.getWidth() / 2
-    newPlatform.y = game.window.getHeight() * 2 / 3
+    newPlatform.x = config.x or game.window.getWidth() / 2
+    newPlatform.y = config.y or game.window.getHeight() * 2 / 3
     newPlatform.size = config.size or {
-        x = 200,
+        x = 120,
         y = 25
     }
 
