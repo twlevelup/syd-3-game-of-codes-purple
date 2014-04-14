@@ -119,4 +119,11 @@ function Player:update(dt)
 
     self:updatePhysics(dt)
 
+    if(self.x < 0) then
+      self.x = 0
+    end
+    if(self.x > self.game.window.getWidth()-self.size.x) then
+      self.x =  self.game.window.getWidth()-self.size.x
+    end
+
 end
