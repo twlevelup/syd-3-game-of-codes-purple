@@ -8,7 +8,7 @@ setmetatable(Player, {__index = Entity})
 function Player:new(game, config)
     local config = config or {}
 
-    local newPlayer = Entity:new(game)
+    local newPlayer = Entity:new(game, config)
     newPlayer.type = "player"
     newPlayer.size = config.size or {
         x = 98,
@@ -127,13 +127,4 @@ function Player:update(dt)
 
     self:updatePhysics(dt)
 
-
-
-    --[[if self.sound.moving.sample ~= nil then
-        if self.vel.x ~= 0 or self.vel.y ~= 0 then
-            self.sound.moving.sample:play()
-        else
-            self.sound.moving.sample:stop()
-        end
-    end]]--
 end

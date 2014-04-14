@@ -16,33 +16,6 @@ describe("Player", function()
             return animation_spy
         end
 
-        --[[mock_sound = function()
-            local sound_spy = {
-                play = spy.new(function() end),
-                stop = spy.new(function() end)
-            }
-
-            return sound_spy
-        end
-
-        describe("playing the movement sound", function()
-            it("should play the movement sound when the player is moving", function()
-                local player = Player:new(mock_input('up'))
-                player.sound.moving.sample = mock_sound()
-                player:update(dt)
-
-                assert.spy(player.sound.moving.sample.play).was.called()
-            end)
-
-            it("should stop playing the movement sound when the player is stationary", function()
-                local player = Player:new(mock_input('none'))
-                player.sound.moving.sample = mock_sound()
-                player:update(dt)
-
-                assert.spy(player.sound.moving.sample.stop).was.called()
-            end)
-        end)]]--
-
         describe("startPosition", function()
           it("should start 10% from the bottom left of the stage", function()
             local love = mock_love()

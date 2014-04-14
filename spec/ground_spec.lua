@@ -20,10 +20,10 @@ describe("Ground", function()
     end)
 
     describe("#size", function()
-        it("should be the width of the window", function()
+        it("should be the width of the window plus image size", function()
             game = mock_love()
             ground = Ground:new(game)
-            assert.are.equal(ground.size.x, game.window.getWidth())
+            assert.are.equal(ground.size.x, game.window.getWidth() + ground.graphics.size.x)
         end)
     end)
 

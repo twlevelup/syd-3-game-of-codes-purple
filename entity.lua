@@ -1,16 +1,19 @@
 Entity = {}
 Entity.__index = Entity
 
-function Entity:new(game)
+function Entity:new(game, config)
+    local config = config or {}
     local newEntity = {
         game = game,
         x = 0,
         y = 0,
-        vel = {x = 0, y = 0},
-        minVel = {x = -math.huge, y = -math.huge},
-        maxVel = {x = math.huge, y = math.huge},
-        acc = {x = 0, y = 1000},
-        drag = {x = 0, y = 0}
+        vel = config.vel or {x = 0, y = 0},
+        minVel = config.minVel or {x = -math.huge, y = -math.huge},
+        maxVel = config.maxVel or {x = math.huge, y = math.huge},
+        gravity = config.gravity or 0,
+        wind = config.wind or 0,
+        acc = config.acc or {x = 0, y = 0},
+        drag = config.drag or {x = 0, y = 0}
     }
 
     return setmetatable(newEntity, self)
@@ -67,9 +70,15 @@ end
 
 function Entity:updatePhysics(dt)
     self.x = calculateNewCoordinateFromVelocity(self.x, self.vel.x, dt)
+    if self.vel.x == 0 and self.wind ~= 0 then
+        self.x = calculateNewCoordinateFromVelocity(self.x, self.wind, dt)
+    end
     self.y = calculateNewCoordinateFromVelocity(self.y, self.vel.y, dt)
     self.vel.x = calculateVelocity(dt, self.vel.x, self.acc.x, self.drag.x)
     self.vel.y = calculateVelocity(dt, self.vel.y, self.acc.y, self.drag.y)
+    if self.gravity ~= 0 then
+        self.vel.y = calculateVelocity(dt, self.vel.y, self.gravity, _)
+    end
     self.vel.x = getConstrainedPoint(self.vel.x, self.minVel.x, self.maxVel.x)
     self.vel.y = getConstrainedPoint(self.vel.y, self.minVel.y, self.maxVel.y)
 end
