@@ -64,10 +64,10 @@ end
 
 function Player:collide(other)
     if self.x == self.lastPosition.x and self.y == self.lastPosition.y then
-        self.y = self.y - 1
+      self.y = self.y - 1
     else
-        self.x = self.lastPosition.x
-        self.y = self.lastPosition.y
+      self.x = self.lastPosition.x
+      self.y = self.lastPosition.y
     end
     self.vel.y = 0
     self.isJumping = false

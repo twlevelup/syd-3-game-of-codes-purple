@@ -4,6 +4,7 @@ Entity.__index = Entity
 function Entity:new(game, config)
     local config = config or {}
     local newEntity = {
+        type = "entity",
         game = game,
         x = 0,
         y = 0,
@@ -62,7 +63,14 @@ function Entity:collidingWith(other)
                          (my_top_overlaps_their_bottom or
                           my_bottom_overlaps_their_top or
                           contained_in_them_vertically)
-    return is_colliding
+
+    if is_colliding and my_bottom_overlaps_their_top then
+      return 2
+    elseif is_colliding then
+      return 1
+    else
+      return false
+    end
 end
 
 function Entity:collide(other)

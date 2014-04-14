@@ -16,12 +16,14 @@ function game:init()
   self.player = Player:new(love, {gravity = gravity, wind = wind})
   self.timer = Timer:new(love, {timeLimit = 110})
   self.backdrop = Backdrop:new(love)
+  -- self.platform = Platform:new(love)
 
   table.insert(self.stageElements, self.backdrop)
   table.insert(self.stageElements, self.timer)
 
   table.insert(self.entities, self.ground)
   table.insert(self.entities, self.player)
+  -- table.insert(self.entities, self.platform)
 end
 
 function game:enter()

@@ -7,6 +7,7 @@ setmetatable(Ground, {__index = Entity})
 function Ground:new(game, config)
     local config = config or {}
     local ground = Entity:new(game, config)
+    ground.type = "ground"
     ground.path = config.path or "assets/images/skyline-ground.png"
     ground.image_size = config.image_size or {
       x = 45,

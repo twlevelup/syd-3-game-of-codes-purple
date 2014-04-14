@@ -63,14 +63,14 @@ describe("Entity", function()
 
     describe("collidingWith", function()
         it("should collide when two entities bounding boxes are intersecting", function()
-            assert.is.equal(baseEntity:collidingWith(collidingEntity), true)
+            assert.is.truthy(baseEntity:collidingWith(collidingEntity))
         end)
 
         it("should collide when two entities bounding boxes are touching horizontally", function()
             collidingEntity.x = 20
             collidingEntity.y = 10
 
-            assert.is.equal(baseEntity:collidingWith(collidingEntity), true)
+            assert.is.truthy(baseEntity:collidingWith(collidingEntity))
         end)
 
         it("should collide when an entity is horizontally inside another entity's bounding box", function()
@@ -82,7 +82,7 @@ describe("Entity", function()
             y = 12
           }
 
-          assert.is.equal(collider:collidingWith(baseEntity), true)
+          assert.is.truthy(collider:collidingWith(baseEntity))
         end)
 
         it("should collide when an entity is vertically inside another entity's bounding box", function()
@@ -94,14 +94,14 @@ describe("Entity", function()
             y = 3
           }
 
-          assert.is.equal(collider:collidingWith(baseEntity), true)
+          assert.is.truthy(collider:collidingWith(baseEntity))
         end)
 
         it("should collide when two entities bounding boxes are touching vertically", function()
             collidingEntity.x = 10
             collidingEntity.y = 20
 
-            assert.is.equal(baseEntity:collidingWith(collidingEntity), true)
+            assert.is.truthy(baseEntity:collidingWith(collidingEntity))
         end)
 
         it("should not collide when two entities bounding boxes are not intersecting", function()
