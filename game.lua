@@ -10,6 +10,7 @@ game = {}
 
 local gravity = 1000
 local wind = 0
+kanyeMusicSource = love.audio.newSource("assets/songs/kanyeSong.mp3")
 
 function game:init()
   self.entities = {}
@@ -26,8 +27,8 @@ function game:init()
   self.platform6 = Platform:new(love, {x = 340, y = 140})
   self.goldchain1 = GoldChain:new(love, {x = 130, y = 382})
   self.goldchain2 = GoldChain:new(love, {x = 250, y = 252})
-  self.goldchainrapper1 = GoldChainRapper:new(love, {x = 440, y = 252})
-  self.goldchainrapper2 = GoldChainRapper:new(love, {x = 610, y = 382})
+  self.goldchainrapper1 = GoldChainRapper:new(love, {x = 440, y = 208})
+  self.goldchainrapper2 = GoldChainRapper:new(love, {x = 390, y = 68})
 
   table.insert(self.stageElements, self.backdrop)
   table.insert(self.stageElements, self.timer)
@@ -42,11 +43,16 @@ function game:init()
   table.insert(self.entities, self.platform6)
   table.insert(self.entities, self.goldchain1)
   table.insert(self.entities, self.goldchain2)
-  table.insert(self.entities, self.goldchainrapper)
-  table.insert(self.entities, self.goldchainrapper)
+  table.insert(self.entities, self.goldchainrapper1)
+  table.insert(self.entities, self.goldchainrapper2)
+  
+  kanyeMusicSource:play();
 end
 
 function game:enter()
+  --if kanyeMusicSource:isPaused() then
+    --kanyeMusicSource:play()
+  --end
 end
 
 function game:update(dt)
@@ -79,6 +85,7 @@ end
 
 function game:keyreleased(key)
     if key == love.input.mapping['pause'] then
+        kanyeMusicSource:pause()
         Gamestate.push(pause)
     end
 end

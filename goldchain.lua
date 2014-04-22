@@ -14,6 +14,7 @@ function GoldChain:new(game, config)
         x = 30,
         y = 25
     }
+    newGoldChain.isCollected = false
 
     return setmetatable(newGoldChain, self)
 end
@@ -23,6 +24,16 @@ function GoldChain:update(dt)
 end
 
 function GoldChain:draw()
+    if (not self.isCollected) then
     goldchainImg = love.graphics.newImage("assets/images/goldchain.png")
     love.graphics.draw(goldchainImg, self.x, self.y)
+    end
+end
+
+function GoldChain:collide(other)
+    if other.type == "player" then
+        --self.graphics 
+        --collectgarbage("collect")
+        self.isCollected = true
+    end
 end

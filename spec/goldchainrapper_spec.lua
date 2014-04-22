@@ -34,7 +34,7 @@ describe("goldchainrapper", function()
     end)
 
     describe("#draw", function()
-        it ("should draw gold chain", function()
+        it ("should draw gold chain rapper", function()
             game = mock_love()
             game.graphics = mock_graphics()
             goldchainrapper = GoldChainRapper:new(game)
