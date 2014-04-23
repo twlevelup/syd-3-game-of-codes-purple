@@ -5,6 +5,7 @@ require 'platform'
 require 'backdrop'
 require 'goldchain'
 require 'goldchainrapper'
+require 'counter'
 
 game = {}
 
@@ -18,6 +19,7 @@ function game:init()
   self.ground = Ground:new(love, {wind = wind})
   self.player = Player:new(love, {gravity = gravity, wind = wind})
   self.timer = Timer:new(love, {timeLimit = 110})
+  self.counter = Counter:new(love, {count = 0, interval = 10, maxcount = 40})
   self.backdrop = Backdrop:new(love)
   self.platform1 = Platform:new(love, {x = 130, y = 410})
   self.platform2 = Platform:new(love, {x = 370, y = 410})
@@ -31,7 +33,9 @@ function game:init()
   self.goldchainrapper2 = GoldChainRapper:new(love, {x = 390, y = 68})
 
   table.insert(self.stageElements, self.backdrop)
+  table.insert(self.stageElements, self.counter)
   table.insert(self.stageElements, self.timer)
+
 
   table.insert(self.entities, self.ground)
   table.insert(self.entities, self.player)
@@ -50,9 +54,6 @@ function game:init()
 end
 
 function game:enter()
-  --if kanyeMusicSource:isPaused() then
-    --kanyeMusicSource:play()
-  --end
 end
 
 function game:update(dt)

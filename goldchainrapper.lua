@@ -1,4 +1,5 @@
 require "entity"
+--Assume will have different behavior from GoldChain
 
 GoldChainRapper = {}
 GoldChainRapper.__index = GoldChainRapper
@@ -32,8 +33,11 @@ end
 
 function GoldChainRapper:collide(other)
     if other.type == "player" then
+        if (not self.isCollected) then
         --self.graphics 
         --collectgarbage("collect")
         self.isCollected = true
+        game.counter:increaseTen()
+        end
     end
 end

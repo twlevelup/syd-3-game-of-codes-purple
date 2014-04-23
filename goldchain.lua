@@ -1,4 +1,5 @@
 require "entity"
+--The only collectible in the game
 
 GoldChain = {}
 GoldChain.__index = GoldChain
@@ -32,8 +33,9 @@ end
 
 function GoldChain:collide(other)
     if other.type == "player" then
-        --self.graphics 
-        --collectgarbage("collect")
+        if (not self.isCollected) then
         self.isCollected = true
+        game.counter:increaseTen()
+        end
     end
 end

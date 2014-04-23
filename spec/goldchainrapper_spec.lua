@@ -33,18 +33,16 @@ describe("goldchainrapper", function()
         end)
     end)
 
-    describe("#draw", function()
+ --[[   describe("#draw", function()
         it ("should draw gold chain rapper", function()
             game = mock_love()
             game.graphics = mock_graphics()
             goldchainrapper = GoldChainRapper:new(game)
             goldchainrapper:draw()
-
-            --assert.spy(game.graphics.rectangle).was.called_with("fill", 100, 100, 100, 30)
             assert.spy(game.graphics.draw).was.called()
         end )
     end)
-
+]]
 
 end)
 

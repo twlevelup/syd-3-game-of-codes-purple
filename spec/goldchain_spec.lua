@@ -33,7 +33,7 @@ describe("goldchain", function()
         end)
     end)
 
-    describe("#draw", function()
+  --[[  describe("#draw", function()
         it ("should draw gold chain", function()
             game = mock_love()
             game.graphics = mock_graphics()
@@ -44,7 +44,7 @@ describe("goldchain", function()
             assert.spy(game.graphics.draw).was.called()
         end )
     end)
-
+]]
 
 end)
 

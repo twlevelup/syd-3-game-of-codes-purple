@@ -66,6 +66,9 @@ function Player:collide(other)
     if other.type == "collectible" then
         return
     end
+    if other.type == "rapper collectible" then
+        return
+    end
     if self.x == self.lastPosition.x and self.y == self.lastPosition.y then
       self.y = self.y - 1
     else
