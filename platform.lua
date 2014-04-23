@@ -23,5 +23,7 @@ function Platform:update(dt)
 end
 
 function Platform:draw()
-    self.game.graphics.rectangle("line", self.x, self.y, self.size.x, self.size.y)
+    love.graphics.setColor(128,128,128) --set graphics color
+    self.game.graphics.rectangle("fill", self.x, self.y, self.size.x, self.size.y)
+    love.graphics.setColor(255,255,255) --reset graphics color back to normal
 end
