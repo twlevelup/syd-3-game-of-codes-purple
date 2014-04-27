@@ -23,6 +23,7 @@ end
 
 function pause:keyreleased(key)
   if key == love.input.mapping['pause'] then
+    kanyeMusicSource:play()
     Gamestate.pop()
   end
 end

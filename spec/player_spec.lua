@@ -202,6 +202,7 @@ describe("Player", function()
                 player.acc = {x = 0, y = 0}
                 player.vel = {x = 0, y = 0}
                 player.speed = 200
+                player.x = 500
                 local orig_x = player.x
 
                 player:update(dt)

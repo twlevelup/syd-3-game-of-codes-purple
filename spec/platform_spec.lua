@@ -6,6 +6,7 @@ describe("Platform", function()
     mock_graphics = function()
         local graphics_spy = {
             rectangle = spy.new(function() end),
+            setColor = spy.new(function() end)
         }
 
         return graphics_spy

@@ -5,7 +5,7 @@ function stageTransition:draw()
   love.graphics.draw(kanyeImg, 50, 40)
 
   -- local text = "Paused.\nPress '" .. love.input.mapping['pause'] .. "' to continue"
-  local text = "TIME IS UP YO"
+  local text = "GAME OVER YO"
   
   love.graphics.setFont(love.graphics.newFont(40))
 

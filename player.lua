@@ -63,8 +63,11 @@ function Player:new(game, config)
 end
 
 function Player:collide(other, side)
-    if other.type == 'collection' then
-        --To be done
+    if other.type == "collectible" then
+        return
+    end
+    if other.type == "rapper collectible" then
+        return
     end
 
     if other.type == 'ground' or other.type == 'platform' then
@@ -72,32 +75,34 @@ function Player:collide(other, side)
             self.isJumping = false
             self.vel.y = 0
         end
-            if side == 1 or side == 3 then
-                if self.lastPosition.y + self.size.y <= other.y then
-                    self.y = self.lastPosition.y
-                    self.isJumping = false
-                    self.vel.y = 0
-                end
-                self.x = self.lastPosition.x
-            elseif side == 2 then
+        if side == 1 or side == 3 then
+            if self.lastPosition.y + self.size.y <= other.y then
+                self.y = self.lastPosition.y
                 self.isJumping = false
                 self.vel.y = 0
-                self.y = self.lastPosition.y
-            elseif side == 4 or side == 6 then
-                self.x = self.lastPosition.x
-            elseif side == 7 or side == 9 then
-                if self.lastPosition.y >= other.y + other.size.y then
-                    self.y = self.lastPosition.y
-                    self.vel.y = 0
-                end
-                self.x = self.lastPosition.x
-            elseif side == 8 then
-                self.y = self.lastPosition.y
             end
-    else
-        self.x = self.lastPosition.x
-        self.y = self.lastPosition.y
+            self.x = self.lastPosition.x
+        elseif side == 2 then
+            self.isJumping = false
+            self.vel.y = 0
+            self.y = self.lastPosition.y
+        elseif side == 4 or side == 6 then
+            self.x = self.lastPosition.x
+        elseif side == 7 or side == 9 then
+            if self.lastPosition.y >= other.y + other.size.y then
+                self.y = self.lastPosition.y
+                self.vel.y = 0
+            end
+            self.x = self.lastPosition.x
+        elseif side == 8 then
+            self.y = self.lastPosition.y
+        end
+        return
     end
+
+    self.y = self.lastPosition.y
+    self.x = self.lastPosition.x
+
 end
 
 function Player:update(dt)
