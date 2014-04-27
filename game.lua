@@ -14,7 +14,7 @@ function game:init()
   self.stageElements = {}
   self.ground = Ground:new(love, {wind = wind})
   self.player = Player:new(love, {gravity = gravity, wind = wind})
-  self.timer = Timer:new(love, {timeLimit = 3})
+  self.timer = Timer:new(love, {timeLimit = 100})
   self.backdrop = Backdrop:new(love)
   self.platform1 = Platform:new(love, {x = 130, y = 410})
   self.platform2 = Platform:new(love, {x = 370, y = 410})
@@ -47,8 +47,9 @@ function game:update(dt)
         entity:update(dt)
         for _, other in pairs(self.entities) do
             if other ~= entity then
-                if entity:collidingWith(other) then
-                    entity:collide(other)
+                local result = entity:collidingWith(other)
+                if(result) then
+                    entity:collide(other, result)
                 end
             end
         end

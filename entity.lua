@@ -53,7 +53,7 @@ function Entity:collidingWith(other)
     local contained_in_them_vertically = bounds.bottom <= other.bottom and bounds.top >= other.top
 
     local my_top_overlaps_their_bottom = bounds.top <= other.bottom and
-                                         bounds.bottom >= other.bottom
+                                         bounds.bottom >= other.bottom 
     local my_bottom_overlaps_their_top = bounds.bottom >= other.top and
                                          bounds.top <= other.top
 
@@ -64,16 +64,31 @@ function Entity:collidingWith(other)
                           my_bottom_overlaps_their_top or
                           contained_in_them_vertically)
 
-    if is_colliding and my_bottom_overlaps_their_top then
-      return 2
-    elseif is_colliding then
-      return 1
-    else
-      return false
+    if is_colliding then
+        if my_left_overlaps_their_right and my_bottom_overlaps_their_top then 
+            return 3
+        elseif my_right_overlaps_their_left and my_bottom_overlaps_their_top then
+            return 1
+        elseif my_right_overlaps_their_left and my_top_overlaps_their_bottom then
+            return 7
+        elseif my_left_overlaps_their_right and my_top_overlaps_their_bottom then
+            return 9
+        elseif my_right_overlaps_their_left then
+            return 4
+        elseif my_left_overlaps_their_right then
+            return 6
+        elseif my_bottom_overlaps_their_top then
+            return 2
+        elseif my_top_overlaps_their_bottom then
+            return 8
+        else
+            return 5
+        end
     end
+    return false
 end
 
-function Entity:collide(other)
+function Entity:collide(other, result)
 end
 
 function Entity:updatePhysics(dt)

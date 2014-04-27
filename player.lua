@@ -62,15 +62,42 @@ function Player:new(game, config)
     return setmetatable(newPlayer, self)
 end
 
-function Player:collide(other)
-    if self.x == self.lastPosition.x and self.y == self.lastPosition.y then
-      self.y = self.y - 1
-    else
-      self.x = self.lastPosition.x
-      self.y = self.lastPosition.y
+function Player:collide(other, side)
+    if other.type == 'collection' then
+        --To be done
     end
-    self.vel.y = 0
-    self.isJumping = false
+
+    if other.type == 'ground' or other.type == 'platform' then
+        if self.y <= other.y - self.size.y then
+            self.isJumping = false
+            self.vel.y = 0
+        end
+            if side == 1 or side == 3 then
+                if self.lastPosition.y + self.size.y <= other.y then
+                    self.y = self.lastPosition.y
+                    self.isJumping = false
+                    self.vel.y = 0
+                end
+                self.x = self.lastPosition.x
+            elseif side == 2 then
+                self.isJumping = false
+                self.vel.y = 0
+                self.y = self.lastPosition.y
+            elseif side == 4 or side == 6 then
+                self.x = self.lastPosition.x
+            elseif side == 7 or side == 9 then
+                if self.lastPosition.y >= other.y + other.size.y then
+                    self.y = self.lastPosition.y
+                    self.vel.y = 0
+                end
+                self.x = self.lastPosition.x
+            elseif side == 8 then
+                self.y = self.lastPosition.y
+            end
+    else
+        self.x = self.lastPosition.x
+        self.y = self.lastPosition.y
+    end
 end
 
 function Player:update(dt)
