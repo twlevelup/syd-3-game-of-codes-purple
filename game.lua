@@ -38,6 +38,7 @@ function game:init()
   table.insert(self.stageElements, self.backdrop)
   table.insert(self.stageElements, self.counter)
   table.insert(self.stageElements, self.timer)
+  table.insert(self.stageElements, self.chainpool)
 
 
   table.insert(self.entities, self.ground)
@@ -55,7 +56,7 @@ function game:init()
   table.insert(self.entities, self.goldchainrapper1)
   table.insert(self.entities, self.goldchainrapper2)
 
-  kanyeMusicSource:play();
+  kanyeMusicSource:play()
 end
 
 function game:getEntities()
@@ -91,7 +92,7 @@ function game:draw()
     end
 
     --Draw all entities
-    for _, e in pairs(self.entities) do
+    for _, e in pairs(self:getEntities()) do
         e:draw()
     end
 end

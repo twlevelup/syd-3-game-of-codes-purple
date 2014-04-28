@@ -3,19 +3,24 @@ GoldChainPool.__index = GoldChainPool
 -- setmetatable(GoldChain, {__index = Entity})
 
 function GoldChainPool:new(game, config)
-    local pool = {}
+    local newPool = {
+      chain = nil,
+      game = game,
+      chainAge = 99,
+      maxChainAge = 3
+    }
 
-    setmetatable(pool, self)
-    return pool
+    setmetatable(newPool, self)
+    return newPool
 end
 
-function GoldChainPool:newRandomChain(game, config)
-    local chain = GoldChain:new(game, config)
+function GoldChainPool:newRandomChain()
+    local chain = GoldChain:new(self.game)
 
     min_x = chain.size.x / 2
-    max_x = game.window.getWidth() - chain.size.x / 2
+    max_x = self.game.window.getWidth() - chain.size.x / 2
     min_y = 0
-    max_y = game.window.getHeight()
+    max_y = self.game.window.getHeight()
 
     chain.x = math.random(min_x, max_x)
     chain.y = math.random(min_y, max_y)
@@ -24,4 +29,23 @@ function GoldChainPool:newRandomChain(game, config)
     end
 
     return chain
+end
+
+function GoldChainPool:replaceChain()
+    self.chain = self:newRandomChain()
+    self.chainAge = 0
+end
+
+function GoldChainPool:chainIsExpired()
+    return self.chainAge >= self.maxChainAge
+end
+
+function GoldChainPool:update(dt)
+    if self:chainIsExpired() then
+      self:replaceChain()
+    end
+    self.chainAge = self.chainAge + dt
+end
+
+function GoldChainPool:draw()
 end

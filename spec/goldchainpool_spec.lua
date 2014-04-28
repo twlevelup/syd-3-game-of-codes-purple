@@ -2,26 +2,23 @@ require 'goldchainpool'
 require 'spec/love-mocks'
 
 describe("goldchainpool", function()
+    before_each(function()
+      Gamestate = mock_gamestate()
+    end)
+
     describe("#newRandomChain", function()
       it("should create a new chain with random x", function()
           local pool = GoldChainPool:new(mock_love())
 
           math.randomseed(1234)
           local goldchain1 = pool:newRandomChain(mock_love())
-          assert.are.equal(0 - goldchain1.size.y / 2, goldchain1.y)
 
           math.randomseed(4567)
           local goldchain2 = pool:newRandomChain(mock_love())
+
           assert.are_not.equal(goldchain1.x, goldchain2.x)
+          assert.are_not.equal(goldchain1.y, goldchain2.y)
       end)
-
-      -- it("should create a chain which is not colliding with anything", function()
-      --     local pool = GoldChainPool:new(mock_love())
-      --     local goldchain = pool:newRandomChain(mock_love())
-
-      --     colliding = false
-      --     assert.is_not_true(colliding)
-      -- end)
     end)
 
     describe("#replaceChain", function()

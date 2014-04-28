@@ -43,7 +43,7 @@ end
 function GoldChain:isCollidingWithAnything()
     local game = Gamestate.current()
     for _, entity in pairs(game:getEntities()) do
-        if entity ~= self and entity:isCollidingWith(self) then
+        if entity ~= self and entity:collidingWith(self) then
             return true
         end
     end

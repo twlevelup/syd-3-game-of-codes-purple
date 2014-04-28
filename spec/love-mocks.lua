@@ -29,3 +29,17 @@ mock_input = function(action)
     }
     return love
 end
+
+mock_gamestate = function()
+      local game = {
+        getEntities = function()
+          return { }
+        end
+      }
+    local gamestate = {
+      current = function()
+        return game
+      end
+    }
+    return gamestate
+end

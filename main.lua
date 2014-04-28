@@ -3,6 +3,7 @@ require 'version'
 require 'game'
 require 'pause'
 
+math.randomseed(os.time())
 love.animation = require 'vendor/anim8'
 Gamestate = require "vendor/gamestate"
 
