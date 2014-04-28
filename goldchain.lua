@@ -20,17 +20,6 @@ function GoldChain:new(game, config)
     return setmetatable(newGoldChain, self)
 end
 
-function GoldChain:new_random(game, config)
-    local chain = GoldChain:new(game, config)
-
-    min_x = chain.size.x / 2
-    max_x = game.window.getWidth() - chain.size.x / 2
-
-    chain.x = math.random(min_x, max_x)
-    chain.y = 0
-    return chain
-end
-
 function GoldChain:update(dt)
     self:updatePhysics(dt)
 end
@@ -49,4 +38,14 @@ function GoldChain:collide(other)
         game.counter:increaseTen()
         end
     end
+end
+
+function GoldChain:isCollidingWithAnything()
+    local game = Gamestate.current()
+    for _, entity in pairs(game:getEntities()) do
+        if entity ~= self and entity:isCollidingWith(self) then
+            return true
+        end
+    end
+    return false
 end

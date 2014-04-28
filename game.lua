@@ -4,6 +4,7 @@ require 'ground'
 require 'platform'
 require 'backdrop'
 require 'goldchain'
+require 'goldchainpool'
 require 'goldchainrapper'
 require 'counter'
 
@@ -23,12 +24,9 @@ function game:init()
   self.timer = Timer:new(love, {timeLimit = 110})
   self.counter = Counter:new(love, {count = 0, interval = 10, maxcount = 40})
   self.backdrop = Backdrop:new(love)
-
-  -- self.goldchain1 = GoldChain:new(love, {x = 130, y = 382})
-  self.goldchain1 = GoldChain:new_random(love)
-  self.goldchain2 = GoldChain:new(love, {x = 250, y = 252})
-  self.goldchainrapper1 = GoldChainRapper:new(love, {x = 440, y = 208})
-  self.goldchainrapper2 = GoldChainRapper:new(love, {x = 390, y = 68})
+  self.chainpool = GoldChainPool:new(love)
+  -- self.goldchainrapper1 = GoldChainRapper:new(love, {x = 440, y = 208})
+  -- self.goldchainrapper2 = GoldChainRapper:new(love, {x = 390, y = 68})
 
   table.insert(self.platforms, Platform:new(love, {x = 130, y = 410}))
   table.insert(self.platforms, Platform:new(love, {x = 370, y = 410}))
@@ -60,6 +58,12 @@ function game:init()
   kanyeMusicSource:play();
 end
 
+function game:getEntities()
+    local allEntities = {self.chainpool.chain}
+    for _, e in pairs(self.entities) do table.insert(allEntities, e) end
+    return allEntities
+end
+
 function game:enter()
 end
 
@@ -67,9 +71,9 @@ function game:update(dt)
   for _, entity in pairs(self.stageElements) do
       entity:update(dt)
   end
-  for _, entity in pairs(self.entities) do
+  for _, entity in pairs(self:getEntities()) do
         entity:update(dt)
-        for _, other in pairs(self.entities) do
+        for _, other in pairs(self:getEntities()) do
             if other ~= entity then
                 local result = entity:collidingWith(other)
                 if(result) then

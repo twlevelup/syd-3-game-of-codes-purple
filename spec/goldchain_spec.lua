@@ -33,18 +33,6 @@ describe("goldchain", function()
         end)
     end)
 
-    describe("#new_random", function()
-      it("should create a new chain at the top of the screen at random x", function()
-          math.randomseed(1234)
-          local goldchain1 = GoldChain:new_random(mock_love())
-          assert.are.equal(0 - goldchain1.size.y / 2, goldchain1.y)
-
-          math.randomseed(4567)
-          local goldchain2 = GoldChain:new_random(mock_love())
-          assert.are_not.equal(goldchain1.x, goldchain2.x)
-      end)
-    end)
-
   --[[  describe("#draw", function()
         it ("should draw gold chain", function()
             game = mock_love()
