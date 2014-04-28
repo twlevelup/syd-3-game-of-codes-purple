@@ -65,6 +65,7 @@ function Player:collide(other, side)
     if other.type == "collectible" then
         return
     end
+
     if other.type == "rapper collectible" then
         return
     end

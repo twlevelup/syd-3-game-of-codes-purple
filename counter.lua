@@ -36,21 +36,20 @@ end
 
 function Counter:toString()
     return self.count .. " / " .. self.maxcount
-end 
+end
 
 function Counter:increaseTen()
     self.count = self.count + self.interval
     return
-end   
+end
 
 function Counter:decreaseTen()
     self.count = self.count - self.interval
     return
-end 
+end
 
 function Counter:draw()
     self.game.graphics.rectangle("line", self.x, self.y, 100, 50)
     local fontHeight = self.game.graphics.getFont():getHeight()
     self.game.graphics.printf(self:toString(), self.x, self.size.y+fontHeight, self.size.x, "center", 0, 2, 2)
 end
-

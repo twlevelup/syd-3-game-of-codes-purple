@@ -37,7 +37,8 @@ function GoldChainPool:replaceChain()
 end
 
 function GoldChainPool:chainIsExpired()
-    return self.chainAge >= self.maxChainAge
+    return self.chainAge >= self.maxChainAge or
+           self.chain.isCollected
 end
 
 function GoldChainPool:update(dt)
