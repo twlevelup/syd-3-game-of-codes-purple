@@ -2,6 +2,7 @@ require 'input'
 require 'version'
 require 'game'
 require 'pause'
+require 'startscreen'
 
 love.animation = require 'vendor/anim8'
 Gamestate = require "vendor/gamestate"

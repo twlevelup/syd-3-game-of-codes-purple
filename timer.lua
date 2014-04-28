@@ -25,7 +25,7 @@ function Timer:new(game, config)
     return setmetatable(newTimer, self)
 end
 
-function Timer:update(currentTime)
+function Timer:update(dt)
     if(self._finished) then
         Gamestate.push(stageTransition)
         return
@@ -34,13 +34,14 @@ function Timer:update(currentTime)
     if(self._timeRemaining==-1) then
         self._timeRemaining = self._timeLimit
     end
-    self._timeRemaining = self._timeRemaining - currentTime
+    self._timeRemaining = self._timeRemaining - dt
 
-    self._finished = (self:toString() == "0:00" and true or false)
+    self._finished = (self._timeRemaining <= 0)
 end
 
 function Timer:toString()
-    return string.sub(os.date(GAME_TIME_FORMAT, self._timeRemaining), 2)
+    local output = (self._timeRemaining == -1) and self._timeLimit or self._timeRemaining
+    return string.sub(os.date(GAME_TIME_FORMAT, output), 2)
 end   
 
 function Timer:draw()
