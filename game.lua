@@ -66,6 +66,7 @@ function game:getEntities()
 end
 
 function game:enter()
+  Gamestate.push(startscreen)
 end
 
 function game:update(dt)

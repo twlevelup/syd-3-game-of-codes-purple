@@ -2,6 +2,7 @@ require 'input'
 require 'version'
 require 'game'
 require 'pause'
+require 'startscreen'
 
 math.randomseed(os.time())
 love.animation = require 'vendor/anim8'
