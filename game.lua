@@ -18,7 +18,7 @@ function game:init()
   self.stageElements = {}
   self.ground = Ground:new(love, {wind = wind})
   self.player = Player:new(love, {gravity = gravity, wind = wind})
-  self.timer = Timer:new(love, {timeLimit = 5})
+  self.timer = Timer:new(love, {timeLimit = 110})
   self.counter = Counter:new(love, {count = 0, interval = 10, maxcount = 40})
   self.backdrop = Backdrop:new(love)
   self.platform1 = Platform:new(love, {x = 130, y = 410})
