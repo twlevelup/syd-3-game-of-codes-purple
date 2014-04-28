@@ -12,7 +12,7 @@ function Counter:new(game, config)
 
     local newCounter = Entity:new(game)
     newCounter.count = config.count or 0
-    newCounter.interval = config.interval or 10
+    newCounter.interval = config.interval or 1
     newCounter.maxcount = config.maxcount or 10
     newCounter._allCollected = false
     newCounter.size = config.size or {
