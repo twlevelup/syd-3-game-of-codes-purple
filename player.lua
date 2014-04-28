@@ -11,8 +11,8 @@ function Player:new(game, config)
     local newPlayer = Entity:new(game, config)
     newPlayer.type = "player"
     newPlayer.size = config.size or {
-        x = 54,
-        y = 82
+        x = 25,
+        y = 98
     }
     newPlayer.isJumping = false
     newPlayer.jumpSpeed = -600
@@ -25,8 +25,7 @@ function Player:new(game, config)
         game.window.getHeight() * 0.9 - (newPlayer.size.y)
 
     newPlayer.graphics = config.graphics or {
-        source = "assets/images/alien-sprites.png",
-        facing = "right"
+        source = "assets/images/alien_sprite.png",
     }
 
     newPlayer.sound = config.sound or {
@@ -54,8 +53,8 @@ function Player:new(game, config)
             newPlayer.graphics.sprites:getHeight()
         )
         newPlayer.graphics.animation = game.animation.newAnimation(
-            newPlayer.graphics.grid("1-6", 1),
-            0.05
+            newPlayer.graphics.grid("1-4", 1),
+            0.20
         )
     end
 

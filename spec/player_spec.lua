@@ -66,32 +66,6 @@ describe("Player", function()
         end)
 
         describe("animating the player", function()
-            describe("the sprite direction", function()
-                it("should point to the right by default", function()
-                    local player = Player:new(mock_input('none'))
-                    assert.is.equal(player.graphics.facing, "right")
-                end)
-
-                it("should point to the right when the right arrow is pressed", function()
-                    local player = Player:new(mock_input('right'))
-                    player.graphics.facing = "left"
-                    player.graphics.animation = mock_animation()
-                    player:update(dt)
-
-                    assert.is.equal(player.graphics.facing, "right")
-                    assert.spy(player.graphics.animation.flipH).was.called()
-                end)
-
-                it("should point to the left when the left arrow is pressed", function()
-                    local player = Player:new(mock_input('left'))
-                    player.graphics.animation = mock_animation()
-                    player:update(dt)
-
-                    assert.is.equal(player.graphics.facing, "left")
-                    assert.spy(player.graphics.animation.flipH).was.called()
-                end)
-            end)
-
             describe("the animation frame", function()
                 it("should stop updating when the player isn't moving", function()
                     local player = Player:new(mock_input('none'))
