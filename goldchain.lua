@@ -20,6 +20,17 @@ function GoldChain:new(game, config)
     return setmetatable(newGoldChain, self)
 end
 
+function GoldChain:new_random(game, config)
+    local chain = GoldChain:new(game, config)
+
+    min_x = chain.size.x / 2
+    max_x = game.window.getWidth() - chain.size.x / 2
+
+    chain.x = math.random(min_x, max_x)
+    chain.y = 0
+    return chain
+end
+
 function GoldChain:update(dt)
     self:updatePhysics(dt)
 end
