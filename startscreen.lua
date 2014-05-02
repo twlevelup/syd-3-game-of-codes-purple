@@ -14,6 +14,7 @@ function startscreen:draw()
   local oldFont = love.graphics.getFont()
   love.graphics.setFont(font)
   love.graphics.print(self.text, love.window.getWidth() / 2 - 50, love.window.getHeight() / 2 - fontHeight, 0, 1, 1)
+  love.graphics.print("KANYEPOCALYPSE", love.window.getWidth()/2-200, 50, 0, 1, 1)
   love.graphics.setFont(oldFont)
 end
 

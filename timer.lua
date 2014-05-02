@@ -26,11 +26,6 @@ function Timer:new(game, config)
 end
 
 function Timer:update(dt)
-    if(self._finished) then
-        Gamestate.push(stageTransition)
-        return
-    end
-
     if(self._timeRemaining==-1) then
         self._timeRemaining = self._timeLimit
     end

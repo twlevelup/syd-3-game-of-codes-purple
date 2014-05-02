@@ -69,7 +69,7 @@ function Player:collide(other, side)
         return
     end
 
-    if other.type == 'ground' or other.type == 'platform' then
+    if other.type == 'ground' or other.type == 'platform' or other.type == 'thug' then
         if self.y <= other.y - self.size.y then
             self.isJumping = false
             self.vel.y = 0
@@ -86,7 +86,7 @@ function Player:collide(other, side)
             self.vel.y = 0
             self.y = self.lastPosition.y
         elseif side == 4 or side == 6 then
-            self.x = self.lastPosition.x
+                self.x = other.x - self.size.x + self.wind*0.5
         elseif side == 7 or side == 9 then
             if self.lastPosition.y >= other.y + other.size.y then
                 self.y = self.lastPosition.y

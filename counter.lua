@@ -1,5 +1,5 @@
 require "entity"
-require 'stageTransition'
+require 'wonState'
 
 Gamestate = require "vendor/gamestate"
 
@@ -26,12 +26,7 @@ function Counter:new(game, config)
 end
 
 function Counter:update(dt)
-    if(self._allCollected) then
-        Gamestate.push(stageTransition)
-        return
-    end
-
-    self._allCollected = (self.count == self.maxcount and true or false)
+    self._allCollected = (self.count == self.maxcount)
 end
 
 function Counter:toString()

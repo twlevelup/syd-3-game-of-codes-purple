@@ -35,7 +35,7 @@ function GoldChain:collide(other)
     if other.type == "player" then
         if (not self.isCollected) then
         self.isCollected = true
-        game.counter:increaseTen()
+        if game.counter then game.counter:increaseTen() end
         end
     end
 end

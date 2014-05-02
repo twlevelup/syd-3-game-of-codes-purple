@@ -1,8 +1,7 @@
 require 'input'
 require 'version'
 require 'game'
-require 'pause'
-require 'startscreen'
+require 'secret/windy'
 
 love.animation = require 'vendor/anim8'
 Gamestate = require "vendor/gamestate"
@@ -22,8 +21,9 @@ function love.load()
     love.input.bind('down', 'down')
     love.input.bind(' ', 'jump')
     love.input.bind('q', 'quit')
+    love.input.bind('k', 'kanye')
     love.input.bind('escape', 'pause')
 
     Gamestate.registerEvents()
-    Gamestate.switch(game)
+    Gamestate.switch(windy)
 end
