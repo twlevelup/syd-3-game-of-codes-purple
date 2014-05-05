@@ -15,7 +15,7 @@ describe("Platform", function()
     describe("#update", function()
         it("should not move on the screen", function()
 
-            local platform = Platform:new(mock_love())
+            local platform = Platform(mock_love())
 
             platform.x = 100
             platform.y = 100
@@ -38,7 +38,7 @@ describe("Platform", function()
         it ("should draw platform", function()
             game = mock_love()
             game.graphics = mock_graphics()
-            platform = Platform:new(game)
+            platform = Platform(game)
             platform:draw()
 
             --assert.spy(game.graphics.rectangle).was.called_with("fill", 100, 100, 100, 30)

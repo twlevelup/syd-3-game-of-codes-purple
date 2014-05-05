@@ -1,51 +1,49 @@
 require "entity"
-require 'wonState'
 
-Gamestate = require "vendor/gamestate"
+Counter = Class{
 
-Counter = {}
-Counter.__index = Counter
-setmetatable(Counter, {__index = Entity})
-
-function Counter:new(game, config)
+init = function(self, game, config)
     local config = config or {}
 
-    local newCounter = Entity:new(game)
-    newCounter.count = config.count or 0
-    newCounter.interval = config.interval or 10
-    newCounter.maxcount = config.maxcount or 10
-    newCounter._allCollected = false
-    newCounter.size = config.size or {
+    Entity.init(self, game, config)
+    self.count = config.count or 0
+    self.interval = config.interval or 1
+    self.maxcount = config.maxcount or 10
+    self.counttext = config.counttext
+    self._allCollected = false
+    self.size = config.size or {
         x = 50,
         y = 60
     }
-    newCounter.x = config.x or 0 + newCounter.size.x
-    newCounter.y = config.y or game.window.getHeight() * 0.1
+    self.x = config.x or 0 + self.size.x
+    self.y = config.y or game.window.getHeight() * 0.1
+end;
 
-    return setmetatable(newCounter, self)
-end
+update = function(self, dt)
+    self._allCollected = (self.count >= self.maxcount)
+end;
 
-function Counter:update(dt)
-    self._allCollected = (self.count == self.maxcount)
-end
+toString = function(self)
+    return self.count .. " / " .. (self.counttext or self.maxcount)
+end;
 
-function Counter:toString()
-    return self.count .. " / " .. self.maxcount
-end 
-
-function Counter:increaseTen()
+increase = function(self)
     self.count = self.count + self.interval
     return
-end   
+end;
 
-function Counter:decreaseTen()
+decrease = function(self)
     self.count = self.count - self.interval
     return
-end 
+end;
 
-function Counter:draw()
+reset = function(self)
+    self.count = 0
+end;
+
+draw = function(self)
     self.game.graphics.rectangle("line", self.x, self.y, 100, 50)
     local fontHeight = self.game.graphics.getFont():getHeight()
     self.game.graphics.printf(self:toString(), self.x, self.size.y+fontHeight, self.size.x, "center", 0, 2, 2)
 end
-
+}

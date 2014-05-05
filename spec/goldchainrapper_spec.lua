@@ -14,7 +14,7 @@ describe("goldchainrapper", function()
     describe("#update", function()
         it("should not move on the screen", function()
 
-            local goldchainrapper = GoldChainRapper:new(mock_love())
+            local goldchainrapper = GoldChainRapper(mock_love())
 
             goldchainrapper.x = 30
             goldchainrapper.y = 30
@@ -37,7 +37,7 @@ describe("goldchainrapper", function()
         it ("should draw gold chain rapper", function()
             game = mock_love()
             game.graphics = mock_graphics()
-            goldchainrapper = GoldChainRapper:new(game)
+            goldchainrapper = GoldChainRapper(game)
             goldchainrapper:draw()
             assert.spy(game.graphics.draw).was.called()
         end )

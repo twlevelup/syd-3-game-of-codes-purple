@@ -4,7 +4,7 @@ describe("Entity", function()
     local baseEntity, collidingEntity, nonCollidingEntity
 
     before_each(function()
-        baseEntity = Entity:new({})
+        baseEntity = Entity({})
         baseEntity.x = 10
         baseEntity.y = 10
         baseEntity.size = {
@@ -12,7 +12,7 @@ describe("Entity", function()
             y = 10
         }
 
-        collidingEntity = Entity:new({})
+        collidingEntity = Entity({})
         collidingEntity.x = 15
         collidingEntity.y = 15
         collidingEntity.size = {
@@ -20,7 +20,7 @@ describe("Entity", function()
             y = 10
         }
 
-        nonCollidingEntity = Entity:new({})
+        nonCollidingEntity = Entity({})
         nonCollidingEntity.x = 30
         nonCollidingEntity.y = 30
         nonCollidingEntity.size = {
@@ -35,7 +35,7 @@ describe("Entity", function()
         local entity
 
         before_each(function()
-            entity= Entity:new({})
+            entity= Entity({})
             entity.x = 10
             entity.y = 10
             entity.size = {
@@ -74,7 +74,7 @@ describe("Entity", function()
         end)
 
         it("should collide when an entity is horizontally inside another entity's bounding box", function()
-          local collider = Entity:new({})
+          local collider = Entity({})
           collider.x  = 12
           collider.y = 12
           collider.size = {
@@ -86,7 +86,7 @@ describe("Entity", function()
         end)
 
         it("should collide when an entity is vertically inside another entity's bounding box", function()
-          local collider = Entity:new({})
+          local collider = Entity({})
           collider.x  = 12
           collider.y = 12
           collider.size = {

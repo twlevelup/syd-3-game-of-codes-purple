@@ -1,29 +1,25 @@
 require "entity"
 
-Platform = {}
-Platform.__index = Platform
-setmetatable(Platform, {__index = Entity})
-
-function Platform:new(game, config)
+Platform = Class{__includes=Entity,
+init = function(self, game, config)
     local config = config or {}
-    local newPlatform = Entity:new(game, config)
-    newPlatform.type = "platform"
-    newPlatform.x = config.x or game.window.getWidth() / 2
-    newPlatform.y = config.y or game.window.getHeight() * 2 / 3
-    newPlatform.size = config.size or {
+    Entity.init(self, game, config)
+    self.type = "platform"
+    self.x = config.x or game.window.getWidth() / 2
+    self.y = config.y or game.window.getHeight() * 2 / 3
+    self.size = config.size or {
         x = 120,
         y = 25
     }
+end;
 
-    return setmetatable(newPlatform, self)
-end
-
-function Platform:update(dt)
+update = function(self, dt)
     self:updatePhysics(dt)
-end
+end;
 
-function Platform:draw()
+draw = function(self)
     self.game.graphics.setColor(128,128,128) --set graphics color
     self.game.graphics.rectangle("fill", self.x, self.y, self.size.x, self.size.y)
     self.game.graphics.setColor(255,255,255) --reset graphics color back to normal
 end
+}

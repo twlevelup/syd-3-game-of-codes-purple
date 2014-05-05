@@ -13,7 +13,7 @@ function Backdrop:new(game, config)
         x = game.window.getWidth(),
         y = game.window.getHeight()
     }
-    newBackdrop.path = config.path or "/assets/images/skyline-bg.png"
+    newBackdrop.path = config.file or "/assets/images/skyline-bg-grey.png"
 
     return setmetatable(newBackdrop, self)
 end

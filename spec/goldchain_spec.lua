@@ -14,7 +14,7 @@ describe("goldchain", function()
     describe("#update", function()
         it("should not move on the screen", function()
 
-            local goldchain = GoldChain:new(mock_love())
+            local goldchain = GoldChain(mock_love())
 
             goldchain.x = 30
             goldchain.y = 30

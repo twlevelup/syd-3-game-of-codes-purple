@@ -1,8 +1,8 @@
 require 'input'
 require 'version'
 require 'game'
-require 'secret/windy'
 
+math.randomseed(os.time())
 love.animation = require 'vendor/anim8'
 Gamestate = require "vendor/gamestate"
 
@@ -25,5 +25,5 @@ function love.load()
     love.input.bind('escape', 'pause')
 
     Gamestate.registerEvents()
-    Gamestate.switch(windy)
+    Gamestate.switch(game)
 end

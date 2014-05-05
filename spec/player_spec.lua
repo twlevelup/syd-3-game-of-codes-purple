@@ -19,7 +19,7 @@ describe("Player", function()
         describe("startPosition", function()
           it("should start 10% from the bottom left of the stage", function()
             local love = mock_love()
-            local player = Player:new(love)
+            local player = Player(love)
             assert.is.equal(player.x, love.window.getWidth()*0.1-(player.size.x/2))
             assert.is.equal(player.y, love.window.getHeight()*0.9-(player.size.y))
           end)
@@ -29,7 +29,7 @@ describe("Player", function()
             it("should store the last position before moving vertically", function()
                 orig_x = 10
                 orig_y = 10
-                local player = Player:new(
+                local player = Player(
                     mock_input('none'),
                     {
                         x = orig_x,
@@ -48,7 +48,7 @@ describe("Player", function()
             it("should store the last position before moving horizonally", function()
                 orig_x = 10
                 orig_y = 10
-                local player = Player:new(
+                local player = Player(
                     mock_input('none'),
                     {
                         x = orig_x,
@@ -68,21 +68,21 @@ describe("Player", function()
         describe("animating the player", function()
             describe("the animation frame", function()
                 it("should stop updating when the player isn't moving", function()
-                    local player = Player:new(mock_input('none'))
-                    player.graphics.animation = mock_animation()
+                    local player = Player(mock_input('none'))
+                    player.animation = mock_animation()
                     player:update(dt)
 
-                    assert.spy(player.graphics.animation.gotoFrame).was.called()
-                    assert.spy(player.graphics.animation.update).was_not.called()
+                    assert.spy(player.animation.gotoFrame).was.called()
+                    assert.spy(player.animation.update).was_not.called()
                 end)
 
                 it("should update the animation state when the player is moving", function()
-                    local player = Player:new(mock_input('right'))
-                    player.graphics.animation = mock_animation()
+                    local player = Player(mock_input('right'))
+                    player.animation = mock_animation()
 
                     player:update(dt)
 
-                    assert.spy(player.graphics.animation.update).was.called()
+                    assert.spy(player.animation.update).was.called()
                 end)
             end)
         end)
@@ -91,7 +91,7 @@ describe("Player", function()
             local player, collidingEntity
 
             before_each(function()
-                player = Player:new(mock_input('none'))
+                player = Player(mock_input('none'))
                 player.size = {
                     x = 10,
                     y = 10
@@ -100,7 +100,7 @@ describe("Player", function()
                 player.y = 10
                 player.graphics.animation = mock_animation()
 
-                collidingEntity = Entity:new(mock_input('none'))
+                collidingEntity = Entity(mock_input('none'))
                 collidingEntity.x = 10
                 collidingEntity.y = 10
                 collidingEntity.size = {
@@ -138,9 +138,7 @@ describe("Player", function()
 
             it("should move the player to its last position when colliding on the bottom side", function()
                 player.lastPosition = {x = 10, y = 9}
-
                 player:collide(collidingEntity)
-
                 assert.is.equal(player.x, 10)
                 assert.is.equal(player.y, 9)
             end)
@@ -148,7 +146,7 @@ describe("Player", function()
 
         describe("player movement", function()
             it("should decrement the player's y if the up-arrow is pressed", function()
-                local player = Player:new(mock_input('jump'))
+                local player = Player(mock_input('jump'))
                 player.acc = {x = 0, y = 0}
                 player.vel = {x = 0, y = 0}
                 player.jumpSpeed = -200
@@ -160,7 +158,7 @@ describe("Player", function()
             end)
 
             it("should increment the player's y if the down-arrow is pressed", function()
-                local player = Player:new(mock_input('down'))
+                local player = Player(mock_input('down'))
                 player.acc = {x = 0, y = 0}
                 player.vel = {x = 0, y = 0}
                 player.speed = 200
@@ -172,7 +170,7 @@ describe("Player", function()
             end)
 
             it("should decrement the player's x if the left-arrow is pressed", function()
-                local player = Player:new(mock_input('left'))
+                local player = Player(mock_input('left'))
                 player.acc = {x = 0, y = 0}
                 player.vel = {x = 0, y = 0}
                 player.speed = 200
@@ -185,7 +183,7 @@ describe("Player", function()
             end)
 
             it("should increment the player's x if the right-arrow is pressed", function()
-                local player = Player:new(mock_input('right'))
+                local player = Player(mock_input('right'))
                 player.acc = {x = 0, y = 0}
                 player.vel = {x = 0, y = 0}
                 player.speed = 200

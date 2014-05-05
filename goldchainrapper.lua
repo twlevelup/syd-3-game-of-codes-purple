@@ -1,37 +1,34 @@
 require "entity"
 --Assume will have different behavior from GoldChain
 
-GoldChainRapper = {}
-GoldChainRapper.__index = GoldChainRapper
-setmetatable(GoldChainRapper, {__index = Entity})
+GoldChainRapper = Class{__includes=Entity,
 
-function GoldChainRapper:new(game, config)
+init = function(self, game, config)
     local config = config or {}
-    local newGoldChainRapper = Entity:new(game, config)
-    newGoldChainRapper.type = "collectible"
-    newGoldChainRapper.x = config.x or game.window.getWidth() / 2
-    newGoldChainRapper.y = config.y or game.window.getHeight() * 2 / 3
-    newGoldChainRapper.size = config.size or {
+    Entity.init(self, game, config)
+    self.type = "collectible"
+    self.x = config.x or game.window.getWidth() / 2
+    self.y = config.y or game.window.getHeight() * 2 / 3
+    self.size = config.size or {
         x = 23,
         y = 29
     }
-    newGoldChainRapper.isCollected = false
+    self.isCollected = false
 
-    return setmetatable(newGoldChainRapper, self)
-end
+end;
 
-function GoldChainRapper:update(dt)
+update = function(self, dt)
     self:updatePhysics(dt)
-end
+end;
 
-function GoldChainRapper:draw()
+draw = function(self)
     if (not self.isCollected) then
     goldChainRapperImg = love.graphics.newImage("assets/images/goldchainrapper.png")
     love.graphics.draw(goldChainRapperImg, self.x, self.y)
     end
-end
+end;
 
-function GoldChainRapper:collide(other)
+collide = function(self, other)
     if other.type == "player" then
         if (not self.isCollected) then
         --self.graphics 
@@ -40,4 +37,6 @@ function GoldChainRapper:collide(other)
         game.counter:increaseTen()
         end
     end
-end
+end;
+
+}

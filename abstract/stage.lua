@@ -1,35 +1,38 @@
+Class = require 'vendor/class'
+
 require 'pause'
 require 'backdrop'
 require 'player'
 require 'ground'
-require 'platform'
 require 'glasses'
 
-clock = require 'vendor/timer'
+timer = require 'vendor/timer'
 
 
-stage = {gravity = 1000, wind = 0}
-
-local finish = false
+stage = {gravity = 1000}
 
 function stage:init()
     self.width = love.window.getWidth()
     self.height = love.window.getHeight()
     self.entities = {}
     self.stageElements = {}
-    self.ground = Ground:new(love, {wind = self.wind})
-    self.player = Player:new(love, {gravity = self.gravity, wind = self.wind})
-    self.backdrop = Backdrop:new(love)
-    self.clock = clock.new()
-
+    self.player = self:getPlayer()
+    self.ground = Ground(love, {wind = self.wind})
+    self.backdrop = self:getBackdrop()
+    self.timer = timer.new()
     table.insert(self.stageElements, self.backdrop)
-    table.insert(self.stageElements, self.counter)
-    table.insert(self.stageElements, self.timer)
-
     table.insert(self.entities, self.ground)
     table.insert(self.entities, self.player)
 
     math.randomseed( os.time() )
+end
+
+function stage:getPlayer()
+    return Player(love, {gravity = self.gravity, wind = self.wind})
+end
+
+function stage:getBackdrop()
+    return Backdrop:new(love)
 end
 
 function stage:update(dt)
@@ -48,7 +51,7 @@ function stage:update(dt)
             end
         end
     end
-    self.clock:update(dt)
+    self.timer:update(dt)
 end
 
 function stage:draw()
@@ -77,7 +80,7 @@ end
 
 function stage:kanye()
     if not self.glasses then 
-        self.glasses = Glasses:new(love)
+        self.glasses = Glasses(love)
     end
 end
 
@@ -91,13 +94,8 @@ function stage:finish()
 end
 
 function stage:garbage()
-
-end
-
-function stage:place(item)
-    if item.type then
-        item.x = math.random(0, self.width)
-        item.y = math.random(0, self.height*0.9)
-        table.insert(self.entities, item)
-    end
+    --[[for key, entity in pairs(self.entities) do
+        if not (0 <= entity.x <= self.width) then
+        end
+    end]]--
 end

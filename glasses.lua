@@ -1,29 +1,28 @@
 require "entity"
 
-Glasses = {}
-Glasses.__index = Glasses
-setmetatable(Glasses, {__index = Entity})
+Glasses = Class{__includes="Entity",
 
-function Glasses:new(game)
+init = function(self, game)
     local config = config or {}
-    local newGlasses = Entity:new(game, config)
-    newGlasses.x = 25
-    newGlasses.y = 0
-    newGlasses.width = game.window.getWidth()
-    newGlasses.bar_size = 50
-    newGlasses.bar_num = game.window.getHeight()
-    return setmetatable(newGlasses, self)
-end
+    Entity.init(self, game, config)
+    self.x = 25
+    self.y = 0
+    self.width = game.window.getWidth()
+    self.bar_size = 50
+    self.bar_num = game.window.getHeight()
+end;
 
-function Glasses:update(dt)
-end
+update = function(self, dt)
+end;
 
-function Glasses:draw()
+draw = function(self)
     self.game.graphics.setColor(39,41,44) --set graphics color
 
     for i = 0, self.bar_size, 2 do 
         self.game.graphics.rectangle("fill", 0, self.x + i*self.bar_size, self.width, self.bar_size)
-    end
+    end;
 
     self.game.graphics.setColor(255,255,255) --reset graphics color back to normal
-end
+end;
+
+}

@@ -7,7 +7,7 @@ describe('Counter', function()
 
   describe('#toString', function()
     it('should display the correct format', function()
-      local counter = Counter:new(love, {count = 2, interval = 1, maxcount = 3})
+      local counter = Counter(love, {count = 2, interval = 1, maxcount = 3})
 
       assert.is.equal("2 / 3", counter:toString())
     end)
@@ -15,7 +15,7 @@ describe('Counter', function()
 
   describe('#update', function()
     it('should be at the top left and not move', function()
-      local counter = Counter:new(love, {count = 2, interval = 1, maxcount = 3})
+      local counter = Counter(love, {count = 2, interval = 1, maxcount = 3})
       local xpos = (0 + counter.size.x)
       local ypos = (love.window.getHeight() * 0.1)
       assert.is.equal(counter.x, xpos)

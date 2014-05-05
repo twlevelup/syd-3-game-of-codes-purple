@@ -1,36 +1,32 @@
 require 'entity'
 
-Item = {picture=nil}
-Item.__index = Item
+Item = Class{__includes={Entity},
+file = nil,
 
-function Item:init(game, config)
+init = function(self, game, config)
     local config = config or {}
-    self.game = game
+    Entity.init(self, game, config)
     self.type = 'item'
-    self.size = {x = 30, y = 30}
-    self.x = config.x or 350
-    self.y = config.y or 200
-    self.image = game.graphics.newImage(self.picture)
+    self.size = config.size or {x = 30, y = 30}
+    self.x = config.x or game.window.getWidth() / 2
+    self.y = config.y or game.window.getHeight() * 2 / 3
+    if self.file then self.image = game.graphics.newImage(self.file) end
     self.collected = false
-end
+end;
 
-function Item:draw()
+draw = function(self)
     if self.collected then return end
-    self.game.graphics.draw(self.image, self.x, self.y)
-end
+    Entity.draw(self)
+end;
 
-function Item:collide(other, side)
-    if other.type == 'player' then
+collide =  function(self, other)
+    if other.type == 'player' and not self.collected then
         self.collected = true
     end
-end
+end;
 
-function Item:update(dt)
-    self:updatePhysics(dt)
+reset = function(self)
+    self.collected = false
 end
-
-function Item:reset()
-    item.collected = false
-end
-
+}
 
